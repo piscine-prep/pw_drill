@@ -15,9 +15,6 @@ Description:
 
 - Écrire une fonction qui prend un float en paramètre
 - La fonction doit effectuer différents castings et retourner la somme de tous les résultats
-- Casting 1: Convertir le float en int (troncature de la partie décimale)
-- Casting 2: Convertir le float en char (récupérer le code ASCII correspondant au reste de la division entière par 256)
-- Casting 3: Garder le float tel quel mais arrondir à l'entier le plus proche
 - La fonction retourne la somme : (int)float + (char)float + round(float)
 - Pour l'arrondi, utiliser la règle : si la partie décimale >= 0.5, arrondir vers le haut, sinon vers le bas
 
