@@ -21,7 +21,7 @@ votre_nom_pw_drill/
 │   ├── test_ex00.sh
 │   ├── test_ex01.sh
 │   ├── test_ex02.sh
-└── ├── ...
+└── └── ...
 ```
 
 ## Création de votre repository personnel
