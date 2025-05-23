@@ -9,19 +9,21 @@
 Votre repository personnel doit respecter cette structure exacte :
 
 ```
-votre_nom_pw_drill/
-├── ex00/
-│   └── pw_putchar_a.c
-├── ex01/
-│   └── pw_hello_powercoders.c
-├── ex02/
-│   └── pw_triangle.c
-├── ...
-├── tests/
-│   ├── test_ex00.sh
-│   ├── test_ex01.sh
-│   ├── test_ex02.sh
-└── ├── ...
+pw_piscine_prep/
+├── votre_nom_pw_drill/
+│   ├── ex00/
+│   │   └── pw_putchar_a.c
+│   ├── ex01/
+│   │   └── pw_hello_powercoders.c
+│   ├── ex02/
+│   │   └── pw_triangle.c
+│   ├── ...
+│   ├── tests/
+│   │   ├── test_ex00.sh
+│   │   ├── test_ex01.sh
+│   │   ├── test_ex02.sh
+│   └── └── ...
+└── pw_drill/...
 ```
 
 ## Création de votre repository personnel
@@ -35,18 +37,29 @@ votre_nom_pw_drill/
    - ✅ Add .gitignore → choisir "C"
 4. **Cliquer sur "Create repository"**
 
-### Étape 2 : Clonage et structure locale
+### Étape 2 : Clonage des repositories nécessaires
 
 ```bash
-# Cloner votre repository
+# Cloner le repository des exercices (pour accéder aux énoncés et tests)
+git clone https://github.com/piscine-prep/pw_drill.git
+
+# Cloner votre repository personnel
 git clone https://github.com/votre_username/votre_nom_pw_drill.git
 cd votre_nom_pw_drill
 
 # Créer la structure de dossiers
-mkdir ex00 ex01 ex02 ... tests
+mkdir ex00 ex01 ex02 tests
 
 # Vérifier la structure
 ls -la
+```
+
+**Important** : Vous devez avoir les deux repositories dans le même dossier parent :
+
+```
+pw_piscine_prep/
+├── pw_drill/              ← Repository des exercices (énoncés et tests)
+└── votre_nom_pw_drill/    ← Votre repository personnel (solutions)
 ```
 
 ### Étape 3 : Premier commit
@@ -64,7 +77,10 @@ git push origin main
 
 #### 1. Lire l'énoncé
 
-Consulter le fichier `ex00/README.md` dans le repository `pw_drill` pour comprendre les exigences.
+```bash
+# Consulter l'énoncé dans le repository des exercices
+cat ../pw_drill/ex00/README.md
+```
 
 #### 2. Créer le fichier source
 
@@ -75,7 +91,7 @@ touch pw_putchar_a.c
 # Éditer avec votre éditeur préféré
 ```
 
-#### 4. Implémenter la fonction
+#### 3. Implémenter la fonction
 
 Exemple de contenu pour `pw_putchar_a.c` :
 
@@ -88,21 +104,22 @@ void pw_putchar_a(void)
 }
 ```
 
-#### 5. Copier et préparer le test
+#### 4. Copier et préparer le test
 
 ```bash
-# Depuis la racine de votre repository
+# Depuis la racine de votre repository personnel
+# Copier le test depuis le repository des exercices
 cp ../pw_drill/tests/test_ex00.sh tests/
 chmod +x tests/test_ex00.sh
 ```
 
-#### 6. Tester votre solution
+#### 5. Tester votre solution
 
 ```bash
 ./tests/test_ex00.sh
 ```
 
-#### 7. Valider et publier
+#### 6. Valider et publier
 
 ```bash
 # Si le test passe
@@ -110,6 +127,10 @@ git add ex00/ tests/test_ex00.sh
 git commit -m "ex00: implemented pw_putchar_a - displays letter 'a'"
 git push origin main
 ```
+
+#### 7. Mettre à jour la progression (optionnel)
+
+Éditer le README principal pour cocher `[x] ex00`.
 
 ## Points importants
 
