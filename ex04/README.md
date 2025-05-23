@@ -1,40 +1,48 @@
-Exercice 03 : Pair ou Impair
+Exercice 04 : Compter les caractères
 
 Structure attendue du dossier:
 
 ```
-ex03/
-└── pw_pair_impair.c
+ex04/
+└── pw_count_chars.c
 ```
 
 Fonctions autorisées:
 
-- Aucune fonction externe autorisée (uniquement les opérations de base du C)
+- Aucune fonction externe n'est autorisée
 
 Description:
 
-- Écrire une fonction qui détermine si un mot contient un nombre pair ou impair de lettres
-- La fonction doit parcourir entièrement la chaîne jusqu'au caractère de fin '\0'
-- Tous les caractères alphabétiques (a-z et A-Z) sont considérés comme des lettres
-- Les espaces, chiffres et caractères spéciaux ne sont pas comptés comme des lettres
-- Si le nombre de lettres est pair (y compris 0), la fonction retourne 'P'
-- Si le nombre de lettres est impair, la fonction retourne 'I'
-- Si la chaîne est NULL, la fonction doit retourner 'N'
+- Écrire une fonction qui prend une chaîne de caractères en paramètre
+- La fonction doit compter le nombre de caractères dans la chaîne (sans compter le caractère de fin '\0')
+- La fonction retourne le nombre de caractères trouvés
+- Si la chaîne est vide, retourner 0
+- Ne pas utiliser de fonctions de la bibliothèque standard comme strlen
 
 Prototype:
 
 ```c
-char pw_pair_impair(char *str);
+int pw_count_chars(char *str);
 ```
 
 Resultat attendu:
 
 ```
 $> ./a.out
-Test avec "Hello": I
-Test avec "Code": P
-Test avec "": P
-Test avec "42 School": I
-Test avec NULL: N
+5
+$>
+```
+
+Avec d'autres chaînes:
+
+```
+$> ./a.out
+12
+$>
+```
+
+```
+$> ./a.out
+0
 $>
 ```

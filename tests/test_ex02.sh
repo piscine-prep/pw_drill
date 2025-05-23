@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Script de test pour l'exercice 03 : Afficher une lettre
-# Usage: ./test_ex03.sh
+# Script de test pour l'exercice 02 : Triangle ASCII
+# Usage: ./test_ex02.sh
 
-EXERCISE_DIR="ex03"
-SOURCE_FILE="pw_putchar.c"
+EXERCISE_DIR="ex02"
+SOURCE_FILE="pw_triangle.c"
 TEST_FILE="test_main.c"
 EXECUTABLE="test_program"
 
@@ -15,7 +15,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}=== Test de l'exercice 03 : Afficher une lettre ===${NC}"
+echo -e "${BLUE}=== Test de l'exercice 02 : Triangle ASCII ===${NC}"
 
 # Vérifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
@@ -38,14 +38,12 @@ cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 
 // Prototype de la fonction de l'étudiant
-void pw_putchar(char c);
+void pw_triangle(void);
 
 int main(void)
 {
-    // Test de la fonction pw_putchar avec les caractères de l'exemple
-    pw_putchar('a');
-    pw_putchar('z');
-    pw_putchar('5');
+    // Test de la fonction pw_triangle
+    pw_triangle();
     
     return (0);
 }
@@ -78,19 +76,19 @@ echo "$OUTPUT_VISIBLE"
 echo
 echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
 echo "a$"
-echo "z$"
-echo "5$"
+echo "aa$"
+echo "aaa$"
 
 EXEC_STATUS=$?
 
 # Définir la sortie attendue
 EXPECTED_OUTPUT="a$
-z$
-5$"
+aa$
+aaa$"
 
 # Vérifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction affiche correctement les caractères avec retours à la ligne${NC}"
+    echo -e "${GREEN}✅ Test réussi! La fonction dessine correctement le triangle${NC}"
     TEST_RESULT=0
 else
     echo -e "${RED}❌ Test échoué!${NC}"
@@ -98,48 +96,6 @@ else
     echo "$EXPECTED_OUTPUT"
     echo -e "${RED}Sortie obtenue:${NC}"
     echo "$OUTPUT_VISIBLE"
-    
-    # Comparer ligne par ligne pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
-    echo "=== Attendu ==="
-    echo "$EXPECTED_OUTPUT"
-    echo "=== Obtenu ==="
-    echo "$OUTPUT_VISIBLE"
-    echo "=============="
-    
-    TEST_RESULT=1
-fi
-
-# Test individuel pour vérifier le comportement avec un seul caractère
-echo -e "${YELLOW}🧪 Test individuel avec 'a'...${NC}"
-
-# Créer un fichier de test pour un seul caractère
-cat > "$TEST_FILE" << 'EOF'
-#include <unistd.h>
-
-// Prototype de la fonction de l'étudiant
-void pw_putchar(char c);
-
-int main(void)
-{
-    pw_putchar('a');
-    return (0);
-}
-EOF
-
-# Recompiler avec le test individuel
-gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compilation_errors.txt
-
-if [ $? -eq 0 ]; then
-    SINGLE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
-    if [ "$SINGLE_OUTPUT" = "a$" ]; then
-        echo -e "${GREEN}✅ Test individuel réussi${NC}"
-    else
-        echo -e "${RED}❌ Test individuel échoué - Sortie: '$SINGLE_OUTPUT'${NC}"
-        TEST_RESULT=1
-    fi
-else
-    echo -e "${RED}❌ Erreur de compilation du test individuel${NC}"
     TEST_RESULT=1
 fi
 
@@ -147,9 +103,9 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 03 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 02 validé avec succès${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 03 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 02 non validé${NC}"
     exit 1
 fi
 
