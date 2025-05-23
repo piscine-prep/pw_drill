@@ -15,6 +15,7 @@ Description:
 
 - Écrire une fonction qui prend un unsigned int en paramètre
 - La fonction doit compter de 0 jusqu'à ce nombre (inclus)
+- **IMPORTANT: Le paramètre n est toujours compris entre 0 et 9 (n < 10)**
 - Chaque nombre doit être affiché sur une ligne séparée
 - La fonction ne doit pas utiliser printf ou puts
 - Utiliser uniquement la fonction write pour l'affichage
@@ -52,7 +53,6 @@ $> ./a.out
 7
 8
 9
-10
 $>
 ```
 

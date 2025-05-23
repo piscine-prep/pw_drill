@@ -10,17 +10,17 @@ Votre repository personnel doit respecter cette structure exacte :
 
 ```
 votre_nom_pw_drill/
-├── ex00/
+├── ex000/
 │   └── pw_putchar_a.c
-├── ex01/
+├── ex001/
 │   └── pw_hello_powercoders.c
-├── ex02/
+├── ex002/
 │   └── pw_triangle.c
 ├── ...
 ├── tests/
-│   ├── test_ex00.sh
-│   ├── test_ex01.sh
-│   ├── test_ex02.sh
+│   ├── test_ex000.sh
+│   ├── test_ex001.sh
+│   ├── test_ex002.sh
 └── └── ...
 ```
 
@@ -46,7 +46,7 @@ git clone https://github.com/votre_username/votre_nom_pw_drill.git
 cd votre_nom_pw_drill
 
 # Créer la structure de dossiers
-mkdir ex00 ex01 ex02 tests
+mkdir ex000 ex001 ex002 tests
 
 # Vérifier la structure
 ls -la
@@ -71,20 +71,20 @@ git push origin main
 
 ## Workflow pour chaque exercice
 
-### Exemple complet avec l'exercice 00
+### Exemple complet avec l'exercice 000
 
 #### 1. Lire l'énoncé
 
 ```bash
 # Consulter l'énoncé dans le repository des exercices
-cat ../pw_drill/ex00/README.md
+cat ../pw_drill/ex000/README.md
 ```
 
 #### 2. Créer le fichier source
 
 ```bash
 # Dans votre repository personnel
-cd ex00
+cd ex000
 touch pw_putchar_a.c
 # Éditer avec votre éditeur préféré
 ```
@@ -107,21 +107,21 @@ void pw_putchar_a(void)
 ```bash
 # Depuis la racine de votre repository personnel
 # Copier le test depuis le repository des exercices
-cp ../pw_drill/tests/test_ex00.sh tests/
-chmod +x tests/test_ex00.sh
+cp ../pw_drill/tests/test_ex000.sh tests/
+chmod +x tests/test_ex000.sh
 ```
 
 #### 5. Tester votre solution
 
 ```bash
-./tests/test_ex00.sh
+./tests/test_ex000.sh
 ```
 
 #### 6. Valider et publier
 
 ```bash
 # Si le test passe
-git add ex00/ tests/test_ex00.sh
+git add ex00/ tests/test_ex000.sh
 git commit -m "ex00: implemented pw_putchar_a - displays letter 'a'"
 git push origin main
 ```
@@ -131,7 +131,7 @@ git push origin main
 ### Structure obligatoire
 
 - **Respecter exactement** les noms de fichiers et dossiers
-- **Un exercice = un dossier** (ex00, ex01, etc.)
+- **Un exercice = un dossier** (ex000, ex001, etc.)
 - **Tests séparés** dans le dossier `tests/`
 
 ### Bonnes pratiques

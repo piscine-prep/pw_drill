@@ -42,10 +42,10 @@ void pw_count_to_n(unsigned int n);
 
 int main(void)
 {
-    // Test de la fonction pw_count_to_n avec différents nombres
+    // Test de la fonction pw_count_to_n avec différents nombres (0-9)
     pw_count_to_n(3);
     write(1, "---\n", 4);  // Séparateur pour les tests
-    pw_count_to_n(10);
+    pw_count_to_n(9);
     write(1, "---\n", 4);  // Séparateur pour les tests
     pw_count_to_n(0);
     
@@ -94,7 +94,6 @@ echo "6$"
 echo "7$"
 echo "8$"
 echo "9$"
-echo "10$"
 echo "---$"
 echo "0$"
 
@@ -116,7 +115,6 @@ EXPECTED_OUTPUT="0$
 7$
 8$
 9$
-10$
 ---$
 0$"
 
@@ -135,7 +133,7 @@ else
     echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
     echo "=== Tests effectués ==="
     echo "pw_count_to_n(3) -> attendu: 0, 1, 2, 3"
-    echo "pw_count_to_n(10) -> attendu: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+    echo "pw_count_to_n(9) -> attendu: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9"
     echo "pw_count_to_n(0) -> attendu: 0"
     echo "======================="
     
@@ -251,7 +249,7 @@ else
     TEST_RESULT=1
 fi
 
-# Test avec un nombre plus grand
+# Test avec un chiffre plus grand (5)
 echo -e "${YELLOW}🧪 Test avec n=5...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
@@ -289,6 +287,51 @@ if [ $? -eq 0 ]; then
     fi
 else
     echo -e "${RED}❌ Erreur de compilation du test avec n=5${NC}"
+    TEST_RESULT=1
+fi
+
+# Test avec le maximum autorisé (9)
+echo -e "${YELLOW}🧪 Test avec n=9...${NC}"
+
+cat > "$TEST_FILE" << 'EOF'
+#include <unistd.h>
+
+// Prototype de la fonction de l'étudiant
+void pw_count_to_n(unsigned int n);
+
+int main(void)
+{
+    pw_count_to_n(9);
+    return (0);
+}
+EOF
+
+gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compilation_errors.txt
+
+if [ $? -eq 0 ]; then
+    NINE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
+    EXPECTED_NINE="0$
+1$
+2$
+3$
+4$
+5$
+6$
+7$
+8$
+9$"
+    if [ "$NINE_OUTPUT" = "$EXPECTED_NINE" ]; then
+        echo -e "${GREEN}✅ Test avec n=9 réussi${NC}"
+    else
+        echo -e "${RED}❌ Test avec n=9 échoué${NC}"
+        echo -e "${RED}Sortie attendue:${NC}"
+        echo "$EXPECTED_NINE"
+        echo -e "${RED}Sortie obtenue:${NC}"
+        echo "$NINE_OUTPUT"
+        TEST_RESULT=1
+    fi
+else
+    echo -e "${RED}❌ Erreur de compilation du test avec n=9${NC}"
     TEST_RESULT=1
 fi
 
