@@ -21,7 +21,6 @@ Description:
 - Utiliser uniquement la fonction write pour l'affichage
 - La fonction ne retourne rien
 - Aucun retour à la ligne n'est nécessaire (juste le nombre)
-- La fonction doit gérer tous les nombres de 0 à 4294967295 (UINT_MAX)
 
 Prototype:
 
