@@ -1,40 +1,38 @@
-Exercice 03 : Pair ou Impair
+Exercice 03 : Triangle ASCII
 
 Structure attendue du dossier:
 
 ```
 ex03/
-└── pw_pair_impair.c
+└── pw_triangle.c
 ```
 
 Fonctions autorisées:
 
-- Aucune fonction externe autorisée (uniquement les opérations de base du C)
+- write
 
 Description:
 
-- Écrire une fonction qui détermine si un mot contient un nombre pair ou impair de lettres
-- La fonction doit parcourir entièrement la chaîne jusqu'au caractère de fin '\0'
-- Tous les caractères alphabétiques (a-z et A-Z) sont considérés comme des lettres
-- Les espaces, chiffres et caractères spéciaux ne sont pas comptés comme des lettres
-- Si le nombre de lettres est pair (y compris 0), la fonction retourne 'P'
-- Si le nombre de lettres est impair, la fonction retourne 'I'
-- Si la chaîne est NULL, la fonction doit retourner 'N'
+- Écrire une fonction qui dessine un triangle en ASCII avec la lettre "a"
+- Le triangle doit avoir exactement 3 lignes
+- La première ligne contient 1 "a", la deuxième ligne 2 "a", la troisième ligne 3 "a"
+- Chaque ligne doit se terminer par un retour à la ligne
+- La fonction ne doit pas utiliser printf ou puts
+- Utiliser uniquement la fonction write pour l'affichage
+- La fonction ne retourne rien
 
 Prototype:
 
 ```c
-char pw_pair_impair(char *str);
+void pw_triangle(void);
 ```
 
 Resultat attendu:
 
 ```
 $> ./a.out
-Test avec "Hello": I
-Test avec "Code": P
-Test avec "": P
-Test avec "42 School": I
-Test avec NULL: N
+a
+aa
+aaa
 $>
 ```
