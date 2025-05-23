@@ -1,9 +1,9 @@
-Exercice 02 : Compter les lettres E
+Exercice 05 : Compter les lettres E
 
 Structure attendue du dossier:
 
 ```
-ex02/
+ex05/
 └── pw_count_e.c
 ```
 
