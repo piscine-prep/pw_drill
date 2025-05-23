@@ -1,9 +1,9 @@
-Exercice 03 : Pair ou Impair
+Exercice 07 : Pair ou Impair
 
 Structure attendue du dossier:
 
 ```
-ex03/
+ex07/
 └── pw_pair_impair.c
 ```
 
