@@ -9,21 +9,19 @@
 Votre repository personnel doit respecter cette structure exacte :
 
 ```
-pw_piscine_prep/
-├── votre_nom_pw_drill/
-│   ├── ex00/
-│   │   └── pw_putchar_a.c
-│   ├── ex01/
-│   │   └── pw_hello_powercoders.c
-│   ├── ex02/
-│   │   └── pw_triangle.c
-│   ├── ...
-│   ├── tests/
-│   │   ├── test_ex00.sh
-│   │   ├── test_ex01.sh
-│   │   ├── test_ex02.sh
-│   └── └── ...
-└── pw_drill/...
+votre_nom_pw_drill/
+├── ex00/
+│   └── pw_putchar_a.c
+├── ex01/
+│   └── pw_hello_powercoders.c
+├── ex02/
+│   └── pw_triangle.c
+├── ...
+├── tests/
+│   ├── test_ex00.sh
+│   ├── test_ex01.sh
+│   ├── test_ex02.sh
+└── ├── ...
 ```
 
 ## Création de votre repository personnel
