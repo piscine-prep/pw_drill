@@ -68,24 +68,24 @@ echo
 echo -e "${YELLOW}🧪 Exécution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie
-OUTPUT=$(./"$EXECUTABLE")
+# Exécuter le programme et capturer la sortie avec cat -e
+echo "Sortie du programme avec cat -e:"
+OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
+echo "$OUTPUT_VISIBLE"
+
+echo
+echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo "a"
+
 EXEC_STATUS=$?
 
-echo -e "${YELLOW}📋 Sortie du programme:${NC}"
-echo -n "$OUTPUT"
-echo
-
-echo -e "${YELLOW}📋 Résultat attendu:${NC}"
-echo -n "a"
-echo
-
 # Vérifier si la sortie est correcte
-if [ "$OUTPUT" = "a" ]; then
+if [ "$OUTPUT_VISIBLE" = "a" ]; then
     echo -e "${GREEN}✅ Test réussi! La fonction affiche correctement 'a'${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué! Sortie attendue: 'a', sortie obtenue: '$OUTPUT'${NC}"
+    echo -e "${RED}❌ Test échoué! Sortie attendue: 'a', sortie obtenue: '$OUTPUT_VISIBLE'${NC}"
+    echo -e "${RED}Avec cat -e: '$OUTPUT_VISIBLE'${NC}"
     TEST_RESULT=1
 fi
 
