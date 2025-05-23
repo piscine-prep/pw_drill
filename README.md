@@ -126,10 +126,6 @@ git commit -m "ex00: implemented pw_putchar_a - displays letter 'a'"
 git push origin main
 ```
 
-#### 7. Mettre à jour la progression (optionnel)
-
-Éditer le README principal pour cocher `[x] ex00`.
-
 ## Points importants
 
 ### Structure obligatoire
