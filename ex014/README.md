@@ -33,7 +33,6 @@ Resultat attendu:
 $> ./a.out
 Test avec 65.7: 198
 Test avec 120.3: 360
-Test avec -45.8: 183
 Test avec 0.0: 0
 Test avec 300.5: 901
 $>
