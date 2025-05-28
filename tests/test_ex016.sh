@@ -47,17 +47,17 @@ int main(void)
     int value1 = 10;
     printf("Avant: %d\n", value1);
     pw_set_value(&value1);
-    printf("Après: %d\n", value1);
+    printf("Apres: %d\n", value1);
     
     int value2 = -5;
     printf("Avant: %d\n", value2);
     pw_set_value(&value2);
-    printf("Après: %d\n", value2);
+    printf("Apres: %d\n", value2);
     
     int value3 = 0;
     printf("Avant: %d\n", value3);
     pw_set_value(&value3);
-    printf("Après: %d\n", value3);
+    printf("Apres: %d\n", value3);
     
     return (0);
 }
@@ -90,21 +90,21 @@ echo "$OUTPUT_VISIBLE"
 echo
 echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
 echo "Avant: 10$"
-echo "Après: 42$"
+echo "Apres: 42$"
 echo "Avant: -5$"
-echo "Après: 42$"
+echo "Apres: 42$"
 echo "Avant: 0$"
-echo "Après: 42$"
+echo "Apres: 42$"
 
 EXEC_STATUS=$?
 
 # Définir la sortie attendue
 EXPECTED_OUTPUT="Avant: 10$
-Après: 42$
+Apres: 42$
 Avant: -5$
-Après: 42$
+Apres: 42$
 Avant: 0$
-Après: 42$"
+Apres: 42$"
 
 # Vérifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
@@ -144,7 +144,7 @@ int main(void)
     int test_value = 100;
     printf("Avant: %d\n", test_value);
     pw_set_value(&test_value);
-    printf("Après: %d\n", test_value);
+    printf("Apres: %d\n", test_value);
     return (0);
 }
 EOF
@@ -155,7 +155,7 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     SINGLE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     EXPECTED_SINGLE="Avant: 100$
-Après: 42$"
+Apres: 42$"
     if [ "$SINGLE_OUTPUT" = "$EXPECTED_SINGLE" ]; then
         echo -e "${GREEN}✅ Test individuel réussi${NC}"
     else
@@ -186,7 +186,7 @@ int main(void)
     int zero_value = 0;
     printf("Avant: %d\n", zero_value);
     pw_set_value(&zero_value);
-    printf("Après: %d\n", zero_value);
+    printf("Apres: %d\n", zero_value);
     return (0);
 }
 EOF
@@ -196,7 +196,7 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     ZERO_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     EXPECTED_ZERO="Avant: 0$
-Après: 42$"
+Apres: 42$"
     if [ "$ZERO_OUTPUT" = "$EXPECTED_ZERO" ]; then
         echo -e "${GREEN}✅ Test avec zéro réussi${NC}"
     else
