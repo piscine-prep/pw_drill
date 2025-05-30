@@ -260,22 +260,26 @@ echo -e "${YELLOW}🧪 Test avec échanges multiples...${NC}"
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
+#include <wchar.h>
+#include <locale.h>
 
 // Prototype de la fonction de l'étudiant
 void pw_swap(int *a, int *b);
 
 int main(void)
 {
+    setlocale(LC_ALL, "");
+
     int a = 1, b = 2;
-    printf("Initial: a=%d, b=%d\n", a, b);
+    wprintf(L"Initial: a=%d, b=%d\n", a, b);
     
     // Premier échange
     pw_swap(&a, &b);
-    printf("1er échange: a=%d, b=%d\n", a, b);
+    wprintf(L"1er échange: a=%d, b=%d\n", a, b);
     
     // Deuxième échange (doit revenir à l'état initial)
     pw_swap(&a, &b);
-    printf("2ème échange: a=%d, b=%d\n", a, b);
+    wprintf(L"2ème échange: a=%d, b=%d\n", a, b);
     
     return (0);
 }
