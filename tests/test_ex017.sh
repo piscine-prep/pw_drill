@@ -47,17 +47,17 @@ int main(void)
     int a1 = 5, b1 = 10;
     printf("Avant: a=%d, b=%d\n", a1, b1);
     pw_swap(&a1, &b1);
-    printf("Après: a=%d, b=%d\n", a1, b1);
+    printf("Apres: a=%d, b=%d\n", a1, b1);
     
     int a2 = -3, b2 = 7;
     printf("Avant: a=%d, b=%d\n", a2, b2);
     pw_swap(&a2, &b2);
-    printf("Après: a=%d, b=%d\n", a2, b2);
+    printf("Apres: a=%d, b=%d\n", a2, b2);
     
     int a3 = 0, b3 = 42;
     printf("Avant: a=%d, b=%d\n", a3, b3);
     pw_swap(&a3, &b3);
-    printf("Après: a=%d, b=%d\n", a3, b3);
+    printf("Apres: a=%d, b=%d\n", a3, b3);
     
     return (0);
 }
@@ -90,21 +90,21 @@ echo "$OUTPUT_VISIBLE"
 echo
 echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
 echo "Avant: a=5, b=10$"
-echo "Après: a=10, b=5$"
+echo "Apres: a=10, b=5$"
 echo "Avant: a=-3, b=7$"
-echo "Après: a=7, b=-3$"
+echo "Apres: a=7, b=-3$"
 echo "Avant: a=0, b=42$"
-echo "Après: a=42, b=0$"
+echo "Apres: a=42, b=0$"
 
 EXEC_STATUS=$?
 
 # Définir la sortie attendue
 EXPECTED_OUTPUT="Avant: a=5, b=10$
-Après: a=10, b=5$
+Apres: a=10, b=5$
 Avant: a=-3, b=7$
-Après: a=7, b=-3$
+Apres: a=7, b=-3$
 Avant: a=0, b=42$
-Après: a=42, b=0$"
+Apres: a=42, b=0$"
 
 # Vérifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
@@ -144,7 +144,7 @@ int main(void)
     int x = 100, y = 200;
     printf("Avant: x=%d, y=%d\n", x, y);
     pw_swap(&x, &y);
-    printf("Après: x=%d, y=%d\n", x, y);
+    printf("Apres: x=%d, y=%d\n", x, y);
     return (0);
 }
 EOF
@@ -155,7 +155,7 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     SINGLE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     EXPECTED_SINGLE="Avant: x=100, y=200$
-Après: x=200, y=100$"
+Apres: x=200, y=100$"
     if [ "$SINGLE_OUTPUT" = "$EXPECTED_SINGLE" ]; then
         echo -e "${GREEN}✅ Test individuel réussi${NC}"
     else
@@ -186,7 +186,7 @@ int main(void)
     int a = 42, b = 42;
     printf("Avant: a=%d, b=%d\n", a, b);
     pw_swap(&a, &b);
-    printf("Après: a=%d, b=%d\n", a, b);
+    printf("Apres: a=%d, b=%d\n", a, b);
     return (0);
 }
 EOF
@@ -196,7 +196,7 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     IDENTICAL_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     EXPECTED_IDENTICAL="Avant: a=42, b=42$
-Après: a=42, b=42$"
+Apres: a=42, b=42$"
     if [ "$IDENTICAL_OUTPUT" = "$EXPECTED_IDENTICAL" ]; then
         echo -e "${GREEN}✅ Test valeurs identiques réussi${NC}"
     else
@@ -228,7 +228,7 @@ int main(void)
     int min_val = -2147483648; // INT_MIN (approximatif)
     printf("Avant: max=%d, min=%d\n", max_val, min_val);
     pw_swap(&max_val, &min_val);
-    printf("Après: max=%d, min=%d\n", max_val, min_val);
+    printf("Apres: max=%d, min=%d\n", max_val, min_val);
     return (0);
 }
 EOF
@@ -238,7 +238,7 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     EXTREME_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     EXPECTED_EXTREME="Avant: max=2147483647, min=-2147483648$
-Après: max=-2147483648, min=2147483647$"
+Apres: max=-2147483648, min=2147483647$"
     if [ "$EXTREME_OUTPUT" = "$EXPECTED_EXTREME" ]; then
         echo -e "${GREEN}✅ Test valeurs extrêmes réussi${NC}"
     else
