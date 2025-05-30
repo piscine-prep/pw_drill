@@ -1,4 +1,4 @@
-Exercice 013 : Afficher un nombre (récursif)
+Exercice 013 : Afficher un nombre
 
 Structure attendue du dossier:
 
@@ -15,7 +15,6 @@ Description:
 
 - Écrire une fonction qui prend un unsigned int en paramètre
 - La fonction doit afficher ce nombre dans la sortie standard
-- La fonction doit utiliser une approche récursive pour décomposer le nombre
 - Chaque chiffre doit être affiché dans le bon ordre (de gauche à droite)
 - La fonction ne doit pas utiliser printf ou puts
 - Utiliser uniquement la fonction write pour l'affichage
