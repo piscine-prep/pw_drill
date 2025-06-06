@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}=== Test de l'exercice 012 : Combinaisons de bits ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,11 +33,11 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_print_bits(void);
 
 int main(void)
@@ -62,20 +62,20 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
-echo "Génération de toutes les combinaisons de bits..."
+# Executer le programme et capturer la sortie avec cat -e
+echo "Generation de toutes les combinaisons de bits..."
 ./"$EXECUTABLE" > program_output.txt
 EXEC_STATUS=$?
 
-# Vérifier le nombre de lignes (doit être exactement 256)
+# Verifier le nombre de lignes (doit etre exactement 256)
 LINE_COUNT=$(wc -l < program_output.txt)
-echo "Nombre de lignes générées: $LINE_COUNT"
+echo "Nombre de lignes generees: $LINE_COUNT"
 
 if [ "$LINE_COUNT" -eq 256 ]; then
     echo -e "${GREEN}✅ Nombre correct de combinaisons (256)${NC}"
@@ -85,52 +85,52 @@ else
     COUNT_TEST=1
 fi
 
-# Afficher les premières et dernières lignes avec cat -e pour vérifier le format
-echo -e "${YELLOW}📋 Premières lignes avec cat -e:${NC}"
+# Afficher les premieres et dernieres lignes avec cat -e pour verifier le format
+echo -e "${YELLOW}📋 Premieres lignes avec cat -e:${NC}"
 head -10 program_output.txt | cat -e
 
-echo -e "${YELLOW}📋 Dernières lignes avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Dernieres lignes avec cat -e:${NC}"
 tail -10 program_output.txt | cat -e
 
-# Vérifier quelques combinaisons spécifiques
-echo -e "${YELLOW}🧪 Vérification des combinaisons spécifiques...${NC}"
+# Verifier quelques combinaisons specifiques
+echo -e "${YELLOW}🧪 Verification des combinaisons specifiques...${NC}"
 
-# Vérifier la première ligne (00000000)
+# Verifier la premiere ligne (00000000)
 FIRST_LINE=$(head -1 program_output.txt)
 if [ "$FIRST_LINE" = "00000000" ]; then
-    echo -e "${GREEN}✅ Première combinaison correcte (00000000)${NC}"
+    echo -e "${GREEN}✅ Premiere combinaison correcte (00000000)${NC}"
     FIRST_TEST=0
 else
-    echo -e "${RED}❌ Première combinaison incorrecte. Attendu: '00000000', Obtenu: '$FIRST_LINE'${NC}"
+    echo -e "${RED}❌ Premiere combinaison incorrecte. Attendu: '00000000', Obtenu: '$FIRST_LINE'${NC}"
     FIRST_TEST=1
 fi
 
-# Vérifier la dernière ligne (11111111)
+# Verifier la derniere ligne (11111111)
 LAST_LINE=$(tail -1 program_output.txt)
 if [ "$LAST_LINE" = "11111111" ]; then
-    echo -e "${GREEN}✅ Dernière combinaison correcte (11111111)${NC}"
+    echo -e "${GREEN}✅ Derniere combinaison correcte (11111111)${NC}"
     LAST_TEST=0
 else
-    echo -e "${RED}❌ Dernière combinaison incorrecte. Attendu: '11111111', Obtenu: '$LAST_LINE'${NC}"
+    echo -e "${RED}❌ Derniere combinaison incorrecte. Attendu: '11111111', Obtenu: '$LAST_LINE'${NC}"
     LAST_TEST=1
 fi
 
-# Vérifier quelques lignes au milieu
+# Verifier quelques lignes au milieu
 TENTH_LINE=$(sed -n '10p' program_output.txt)
 if [ "$TENTH_LINE" = "00001001" ]; then
-    echo -e "${GREEN}✅ 10ème combinaison correcte (00001001)${NC}"
+    echo -e "${GREEN}✅ 10eme combinaison correcte (00001001)${NC}"
     TENTH_TEST=0
 else
-    echo -e "${RED}❌ 10ème combinaison incorrecte. Attendu: '00001001', Obtenu: '$TENTH_LINE'${NC}"
+    echo -e "${RED}❌ 10eme combinaison incorrecte. Attendu: '00001001', Obtenu: '$TENTH_LINE'${NC}"
     TENTH_TEST=1
 fi
 
-# Vérifier que chaque ligne contient exactement 8 caractères (sans compter le retour à la ligne)
-echo -e "${YELLOW}🧪 Vérification de la longueur des lignes...${NC}"
+# Verifier que chaque ligne contient exactement 8 caracteres (sans compter le retour a la ligne)
+echo -e "${YELLOW}🧪 Verification de la longueur des lignes...${NC}"
 INVALID_LENGTH_COUNT=$(awk 'length($0) != 8' program_output.txt | wc -l)
 
 if [ "$INVALID_LENGTH_COUNT" -eq 0 ]; then
-    echo -e "${GREEN}✅ Toutes les lignes ont la bonne longueur (8 caractères)${NC}"
+    echo -e "${GREEN}✅ Toutes les lignes ont la bonne longueur (8 caracteres)${NC}"
     LENGTH_TEST=0
 else
     echo -e "${RED}❌ $INVALID_LENGTH_COUNT lignes ont une longueur incorrecte${NC}"
@@ -139,59 +139,59 @@ else
     LENGTH_TEST=1
 fi
 
-# Vérifier que toutes les lignes ne contiennent que des 0 et des 1
-echo -e "${YELLOW}🧪 Vérification du contenu des lignes...${NC}"
+# Verifier que toutes les lignes ne contiennent que des 0 et des 1
+echo -e "${YELLOW}🧪 Verification du contenu des lignes...${NC}"
 INVALID_CONTENT_COUNT=$(grep -v '^[01]*$' program_output.txt | wc -l)
 
 if [ "$INVALID_CONTENT_COUNT" -eq 0 ]; then
     echo -e "${GREEN}✅ Toutes les lignes ne contiennent que des 0 et des 1${NC}"
     CONTENT_TEST=0
 else
-    echo -e "${RED}❌ $INVALID_CONTENT_COUNT lignes contiennent des caractères invalides${NC}"
+    echo -e "${RED}❌ $INVALID_CONTENT_COUNT lignes contiennent des caracteres invalides${NC}"
     echo "Exemples de lignes avec contenu invalide:"
     grep -v '^[01]*$' program_output.txt | head -5
     CONTENT_TEST=1
 fi
 
-# Vérifier qu'il n'y a pas de doublons
-echo -e "${YELLOW}🧪 Vérification des doublons...${NC}"
+# Verifier qu'il n'y a pas de doublons
+echo -e "${YELLOW}🧪 Verification des doublons...${NC}"
 UNIQUE_COUNT=$(sort program_output.txt | uniq | wc -l)
 
 if [ "$UNIQUE_COUNT" -eq 256 ]; then
-    echo -e "${GREEN}✅ Aucun doublon détecté${NC}"
+    echo -e "${GREEN}✅ Aucun doublon detecte${NC}"
     DUPLICATE_TEST=0
 else
-    echo -e "${RED}❌ Des doublons ont été détectés. Combinaisons uniques: $UNIQUE_COUNT${NC}"
+    echo -e "${RED}❌ Des doublons ont ete detectes. Combinaisons uniques: $UNIQUE_COUNT${NC}"
     echo "Exemples de doublons:"
     sort program_output.txt | uniq -d | head -5
     DUPLICATE_TEST=1
 fi
 
-# Vérifier que les retours à la ligne sont présents
-echo -e "${YELLOW}🧪 Vérification des retours à la ligne...${NC}"
+# Verifier que les retours a la ligne sont presents
+echo -e "${YELLOW}🧪 Verification des retours a la ligne...${NC}"
 OUTPUT_WITH_MARKERS=$(cat program_output.txt | cat -e)
 NEWLINE_COUNT=$(echo "$OUTPUT_WITH_MARKERS" | grep '\$$' | wc -l)
 
 if [ "$NEWLINE_COUNT" -eq 256 ]; then
-    echo -e "${GREEN}✅ Tous les retours à la ligne sont présents${NC}"
+    echo -e "${GREEN}✅ Tous les retours a la ligne sont presents${NC}"
     NEWLINE_TEST=0
 else
-    echo -e "${RED}❌ Retours à la ligne manquants. Attendu: 256, Trouvé: $NEWLINE_COUNT${NC}"
+    echo -e "${RED}❌ Retours a la ligne manquants. Attendu: 256, Trouve: $NEWLINE_COUNT${NC}"
     NEWLINE_TEST=1
 fi
 
-# Calcul du résultat final
+# Calcul du resultat final
 TOTAL_TESTS=$((COUNT_TEST + FIRST_TEST + LAST_TEST + TENTH_TEST + LENGTH_TEST + CONTENT_TEST + DUPLICATE_TEST + NEWLINE_TEST))
 
 # Nettoyage
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt program_output.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TOTAL_TESTS -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 012 validé avec succès${NC}"
-    echo -e "${GREEN}Toutes les 256 combinaisons de bits ont été générées correctement!${NC}"
+    echo -e "\n${GREEN}✅ Exercice 012 valide avec succes${NC}"
+    echo -e "${GREEN}Toutes les 256 combinaisons de bits ont ete generees correctement!${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 012 non validé${NC}"
-    echo -e "${RED}Problèmes détectés: $TOTAL_TESTS${NC}"
+    echo -e "\n${RED}❌ Exercice 012 non valide${NC}"
+    echo -e "${RED}Problemes detectes: $TOTAL_TESTS${NC}"
     exit 1
 fi
 

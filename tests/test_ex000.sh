@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}=== Test de l'exercice 000 : Afficher la lettre A ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,11 +33,11 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_putchar_a(void);
 
 int main(void)
@@ -62,29 +62,29 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
 echo "a"
 
 EXEC_STATUS=$?
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "a" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction affiche correctement 'a'${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction affiche correctement 'a'${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué! Sortie attendue: 'a', sortie obtenue: '$OUTPUT_VISIBLE'${NC}"
+    echo -e "${RED}❌ Test echoue! Sortie attendue: 'a', sortie obtenue: '$OUTPUT_VISIBLE'${NC}"
     echo -e "${RED}Avec cat -e: '$OUTPUT_VISIBLE'${NC}"
     TEST_RESULT=1
 fi
@@ -93,9 +93,9 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 000 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 000 valide avec succes${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 000 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 000 non valide${NC}"
     exit 1
 fi
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script de test pour l'exercice 024 : Copier une chaîne avec limite (strncpy)
+# Script de test pour l'exercice 024 : Copier une chaine avec limite (strncpy)
 # Usage: ./test_ex024.sh
 
 EXERCISE_DIR="ex024"
@@ -15,15 +15,15 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}=== Test de l'exercice 024 : Copier une chaîne avec limite (strncpy) ===${NC}"
+echo -e "${BLUE}=== Test de l'exercice 024 : Copier une chaine avec limite (strncpy) ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,21 +33,21 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 char *pw_strncpy(char *dest, char *src, unsigned int n);
 
 int main(void)
 {
-    // Test de la fonction pw_strncpy avec différents cas
+    // Test de la fonction pw_strncpy avec differents cas
     
-    // Test 1 - Copie complète (src plus court que n)
-    printf("Test 1 - Copie complète:\n");
+    // Test 1 - Copie complete (src plus court que n)
+    printf("Test 1 - Copie complete:\n");
     char dest1[20];
     memset(dest1, 'X', 19);  // Remplir avec des X
     dest1[19] = '\0';
@@ -58,8 +58,8 @@ int main(void)
     printf("Longueur destination: %zu\n", strlen(dest1));
     printf("\n");
     
-    // Test 2 - Copie tronquée (src plus long que n)
-    printf("Test 2 - Copie tronquée:\n");
+    // Test 2 - Copie tronquee (src plus long que n)
+    printf("Test 2 - Copie tronquee:\n");
     char dest2[20];
     memset(dest2, 'X', 19);
     dest2[19] = '\0';
@@ -71,8 +71,8 @@ int main(void)
     printf("Longueur destination: %zu\n", strlen(dest2));
     printf("\n");
     
-    // Test 3 - Chaîne vide
-    printf("Test 3 - Chaîne vide:\n");
+    // Test 3 - Chaine vide
+    printf("Test 3 - Chaine vide:\n");
     char dest3[20];
     memset(dest3, 'X', 19);
     dest3[19] = '\0';
@@ -87,10 +87,10 @@ int main(void)
     printf("Test 4 - n=0:\n");
     char dest4[] = "initial";
     pw_strncpy(dest4, "test", 0);
-    printf("Destination inchangée: \"%s\"\n", dest4);
+    printf("Destination inchangee: \"%s\"\n", dest4);
     printf("\n");
     
-    // Test 5 - src plus court que n (vérifier padding avec '\0')
+    // Test 5 - src plus court que n (verifier padding avec '\0')
     printf("Test 5 - src plus court que n:\n");
     char dest5[20];
     memset(dest5, 'X', 19);
@@ -128,36 +128,36 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
-echo "Test 1 - Copie complète:$"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
+echo "Test 1 - Copie complete:$"
 echo "Source: \"Hello\"$"
 echo "Destination (n=10): \"Hello\"$"
 echo "Longueur destination: 5$"
 echo "$"
-echo "Test 2 - Copie tronquée:$"
+echo "Test 2 - Copie tronquee:$"
 echo "Source: \"Hello World\"$"
 echo "Destination (n=5): \"Hello\"$"
 echo "Longueur destination: 5$"
 echo "$"
-echo "Test 3 - Chaîne vide:$"
+echo "Test 3 - Chaine vide:$"
 echo "Source: \"\"$"
 echo "Destination (n=5): \"\"$"
 echo "Longueur destination: 0$"
 echo "$"
 echo "Test 4 - n=0:$"
-echo "Destination inchangée: \"initial\"$"
+echo "Destination inchangee: \"initial\"$"
 echo "$"
 echo "Test 5 - src plus court que n:$"
 echo "Source: \"Hi\"$"
@@ -168,24 +168,24 @@ echo "Test NULL: OK$"
 
 EXEC_STATUS=$?
 
-# Définir la sortie attendue
-EXPECTED_OUTPUT="Test 1 - Copie complète:$
+# Definir la sortie attendue
+EXPECTED_OUTPUT="Test 1 - Copie complete:$
 Source: \"Hello\"$
 Destination (n=10): \"Hello\"$
 Longueur destination: 5$
 $
-Test 2 - Copie tronquée:$
+Test 2 - Copie tronquee:$
 Source: \"Hello World\"$
 Destination (n=5): \"Hello\"$
 Longueur destination: 5$
 $
-Test 3 - Chaîne vide:$
+Test 3 - Chaine vide:$
 Source: \"\"$
 Destination (n=5): \"\"$
 Longueur destination: 0$
 $
 Test 4 - n=0:$
-Destination inchangée: \"initial\"$
+Destination inchangee: \"initial\"$
 $
 Test 5 - src plus court que n:$
 Source: \"Hi\"$
@@ -194,23 +194,23 @@ Longueur destination: 2$
 $
 Test NULL: OK$"
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction copie correctement les chaînes avec limite${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction copie correctement les chaines avec limite${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue:${NC}"
     echo "$EXPECTED_OUTPUT"
     echo -e "${RED}Sortie obtenue:${NC}"
     echo "$OUTPUT_VISIBLE"
     
     # Comparer ligne par ligne pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
-    echo "=== Tests effectués ==="
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
+    echo "=== Tests effectues ==="
     echo "pw_strncpy(dest, \"Hello\", 10) -> doit copier \"Hello\" et padder avec \\0"
     echo "pw_strncpy(dest, \"Hello World\", 5) -> doit copier \"Hello\" seulement"
-    echo "pw_strncpy(dest, \"\", 5) -> doit copier chaîne vide et padder"
+    echo "pw_strncpy(dest, \"\", 5) -> doit copier chaine vide et padder"
     echo "pw_strncpy(dest, \"test\", 0) -> dest ne doit pas changer"
     echo "pw_strncpy(dest, \"Hi\", 5) -> doit copier \"Hi\" et padder avec \\0"
     echo "pw_strncpy(dest, NULL, 5) -> dest ne doit pas changer"
@@ -219,7 +219,7 @@ else
     TEST_RESULT=1
 fi
 
-# Test individuel pour vérifier le comportement avec troncature
+# Test individuel pour verifier le comportement avec troncature
 echo -e "${YELLOW}🧪 Test individuel avec troncature...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
@@ -227,7 +227,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <stdio.h>
 #include <string.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 char *pw_strncpy(char *dest, char *src, unsigned int n);
 
 int main(void)
@@ -258,9 +258,9 @@ if [ $? -eq 0 ]; then
 Premiers 3 chars: Too$
 Retour correct: OUI$"
     if [ "$TRUNC_OUTPUT" = "$EXPECTED_TRUNC" ]; then
-        echo -e "${GREEN}✅ Test troncature réussi${NC}"
+        echo -e "${GREEN}✅ Test troncature reussi${NC}"
     else
-        echo -e "${RED}❌ Test troncature échoué${NC}"
+        echo -e "${RED}❌ Test troncature echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_TRUNC"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -279,7 +279,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 char *pw_strncpy(char *dest, char *src, unsigned int n);
 
 int main(void)
@@ -300,9 +300,9 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     NULL_DEST_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if [ "$NULL_DEST_OUTPUT" = "Test dest NULL: OK$" ]; then
-        echo -e "${GREEN}✅ Test dest NULL réussi${NC}"
+        echo -e "${GREEN}✅ Test dest NULL reussi${NC}"
     else
-        echo -e "${RED}❌ Test dest NULL échoué - Sortie: '$NULL_DEST_OUTPUT'${NC}"
+        echo -e "${RED}❌ Test dest NULL echoue - Sortie: '$NULL_DEST_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
 else
@@ -310,15 +310,15 @@ else
     TEST_RESULT=1
 fi
 
-# Test de padding avec '\0' (vérification que les caractères après src sont bien à '\0')
-echo -e "${YELLOW}🧪 Test vérification du padding...${NC}"
+# Test de padding avec '\0' (verification que les caracteres apres src sont bien a '\0')
+echo -e "${YELLOW}🧪 Test verification du padding...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 char *pw_strncpy(char *dest, char *src, unsigned int n);
 
 int main(void)
@@ -330,7 +330,7 @@ int main(void)
     char src[] = "AB";
     pw_strncpy(dest, src, 5);
     
-    // Vérifier que les caractères 2, 3 et 4 sont des '\0'
+    // Verifier que les caracteres 2, 3 et 4 sont des '\0'
     if (dest[0] == 'A' && dest[1] == 'B' && 
         dest[2] == '\0' && dest[3] == '\0' && dest[4] == '\0') {
         printf("Test padding: OK\n");
@@ -348,9 +348,9 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     PADDING_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if [ "$PADDING_OUTPUT" = "Test padding: OK$" ]; then
-        echo -e "${GREEN}✅ Test padding réussi${NC}"
+        echo -e "${GREEN}✅ Test padding reussi${NC}"
     else
-        echo -e "${RED}❌ Test padding échoué${NC}"
+        echo -e "${RED}❌ Test padding echoue${NC}"
         echo -e "${RED}Sortie: '$PADDING_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
@@ -367,7 +367,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <stdio.h>
 #include <string.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 char *pw_strncpy(char *dest, char *src, unsigned int n);
 
 int main(void)
@@ -388,7 +388,7 @@ int main(void)
     // Utiliser notre fonction
     pw_strncpy(dest2, src, 4);
     
-    // Comparer les 4 premiers caractères
+    // Comparer les 4 premiers caracteres
     int same = 1;
     for (int i = 0; i < 4; i++) {
         if (dest1[i] != dest2[i]) {
@@ -411,9 +411,9 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     COMPARISON_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if [ "$COMPARISON_OUTPUT" = "Comparaison avec strncpy standard: OK$" ]; then
-        echo -e "${GREEN}✅ Test comparaison avec strncpy standard réussi${NC}"
+        echo -e "${GREEN}✅ Test comparaison avec strncpy standard reussi${NC}"
     else
-        echo -e "${RED}❌ Test comparaison avec strncpy standard échoué${NC}"
+        echo -e "${RED}❌ Test comparaison avec strncpy standard echoue${NC}"
         echo -e "${RED}Sortie: '$COMPARISON_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
@@ -422,15 +422,15 @@ else
     TEST_RESULT=1
 fi
 
-# Test cas limite : n plus grand que la taille des chaînes
-echo -e "${YELLOW}🧪 Test avec n très grand...${NC}"
+# Test cas limite : n plus grand que la taille des chaines
+echo -e "${YELLOW}🧪 Test avec n tres grand...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 char *pw_strncpy(char *dest, char *src, unsigned int n);
 
 int main(void)
@@ -443,9 +443,9 @@ int main(void)
     pw_strncpy(dest, src, 20);
     
     if (strcmp(dest, "Short") == 0 && strlen(dest) == 5) {
-        printf("Test n très grand: OK\n");
+        printf("Test n tres grand: OK\n");
     } else {
-        printf("Test n très grand: FAILED\n");
+        printf("Test n tres grand: FAILED\n");
         printf("dest='%s', longueur=%zu\n", dest, strlen(dest));
     }
     return (0);
@@ -456,27 +456,27 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 
 if [ $? -eq 0 ]; then
     LARGE_N_OUTPUT=$(./"$EXECUTABLE" | cat -e)
-    if [ "$LARGE_N_OUTPUT" = "Test n très grand: OK$" ]; then
-        echo -e "${GREEN}✅ Test n très grand réussi${NC}"
+    if [ "$LARGE_N_OUTPUT" = "Test n tres grand: OK$" ]; then
+        echo -e "${GREEN}✅ Test n tres grand reussi${NC}"
     else
-        echo -e "${RED}❌ Test n très grand échoué${NC}"
+        echo -e "${RED}❌ Test n tres grand echoue${NC}"
         echo -e "${RED}Sortie: '$LARGE_N_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test n très grand${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test n tres grand${NC}"
     TEST_RESULT=1
 fi
 
-# Test avec caractères spéciaux
-echo -e "${YELLOW}🧪 Test avec caractères spéciaux...${NC}"
+# Test avec caracteres speciaux
+echo -e "${YELLOW}🧪 Test avec caracteres speciaux...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 char *pw_strncpy(char *dest, char *src, unsigned int n);
 
 int main(void)
@@ -486,9 +486,9 @@ int main(void)
     pw_strncpy(dest, src, 10);
     
     if (strncmp(dest, src, strlen(src)) == 0) {
-        printf("Test caractères spéciaux: OK\n");
+        printf("Test caracteres speciaux: OK\n");
     } else {
-        printf("Test caractères spéciaux: FAILED\n");
+        printf("Test caracteres speciaux: FAILED\n");
     }
     return (0);
 }
@@ -498,15 +498,15 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 
 if [ $? -eq 0 ]; then
     SPECIAL_OUTPUT=$(./"$EXECUTABLE" | cat -e)
-    if [ "$SPECIAL_OUTPUT" = "Test caractères spéciaux: OK$" ]; then
-        echo -e "${GREEN}✅ Test caractères spéciaux réussi${NC}"
+    if [ "$SPECIAL_OUTPUT" = "Test caracteres speciaux: OK$" ]; then
+        echo -e "${GREEN}✅ Test caracteres speciaux reussi${NC}"
     else
-        echo -e "${RED}❌ Test caractères spéciaux échoué${NC}"
+        echo -e "${RED}❌ Test caracteres speciaux echoue${NC}"
         echo -e "${RED}Sortie: '$SPECIAL_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test caractères spéciaux${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test caracteres speciaux${NC}"
     TEST_RESULT=1
 fi
 
@@ -514,10 +514,10 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 024 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 024 valide avec succes${NC}"
     echo -e "${GREEN}La fonction pw_strncpy reproduit correctement le comportement de strncpy!${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 024 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 024 non valide${NC}"
     exit 1
 fi
 

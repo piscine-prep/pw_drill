@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script de test pour l'exercice 017 : Échanger deux valeurs
+# Script de test pour l'exercice 017 : Echanger deux valeurs
 # Usage: ./test_ex017.sh
 
 EXERCISE_DIR="ex017"
@@ -15,15 +15,15 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}=== Test de l'exercice 017 : Échanger deux valeurs ===${NC}"
+echo -e "${BLUE}=== Test de l'exercice 017 : Echanger deux valeurs ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,17 +33,17 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_swap(int *a, int *b);
 
 int main(void)
 {
-    // Test de la fonction pw_swap avec différentes valeurs
+    // Test de la fonction pw_swap avec differentes valeurs
     int a1 = 5, b1 = 10;
     printf("Avant: a=%d, b=%d\n", a1, b1);
     pw_swap(&a1, &b1);
@@ -76,19 +76,19 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
 echo "Avant: a=5, b=10$"
 echo "Apres: a=10, b=5$"
 echo "Avant: a=-3, b=7$"
@@ -98,7 +98,7 @@ echo "Apres: a=42, b=0$"
 
 EXEC_STATUS=$?
 
-# Définir la sortie attendue
+# Definir la sortie attendue
 EXPECTED_OUTPUT="Avant: a=5, b=10$
 Apres: a=10, b=5$
 Avant: a=-3, b=7$
@@ -106,20 +106,20 @@ Apres: a=7, b=-3$
 Avant: a=0, b=42$
 Apres: a=42, b=0$"
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction échange correctement les valeurs${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction echange correctement les valeurs${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue:${NC}"
     echo "$EXPECTED_OUTPUT"
     echo -e "${RED}Sortie obtenue:${NC}"
     echo "$OUTPUT_VISIBLE"
     
     # Comparer ligne par ligne pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
-    echo "=== Tests effectués ==="
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
+    echo "=== Tests effectues ==="
     echo "pw_swap(&a1, &b1) avec a1=5, b1=10 -> doit donner a1=10, b1=5"
     echo "pw_swap(&a2, &b2) avec a2=-3, b2=7 -> doit donner a2=7, b2=-3"
     echo "pw_swap(&a3, &b3) avec a3=0, b3=42 -> doit donner a3=42, b3=0"
@@ -128,15 +128,15 @@ else
     TEST_RESULT=1
 fi
 
-# Test individuel pour vérifier le comportement avec un seul échange
-echo -e "${YELLOW}🧪 Test individuel avec un échange...${NC}"
+# Test individuel pour verifier le comportement avec un seul echange
+echo -e "${YELLOW}🧪 Test individuel avec un echange...${NC}"
 
-# Créer un fichier de test pour un seul échange
+# Creer un fichier de test pour un seul echange
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_swap(int *a, int *b);
 
 int main(void)
@@ -157,9 +157,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_SINGLE="Avant: x=100, y=200$
 Apres: x=200, y=100$"
     if [ "$SINGLE_OUTPUT" = "$EXPECTED_SINGLE" ]; then
-        echo -e "${GREEN}✅ Test individuel réussi${NC}"
+        echo -e "${GREEN}✅ Test individuel reussi${NC}"
     else
-        echo -e "${RED}❌ Test individuel échoué${NC}"
+        echo -e "${RED}❌ Test individuel echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_SINGLE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -178,7 +178,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_swap(int *a, int *b);
 
 int main(void)
@@ -198,9 +198,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_IDENTICAL="Avant: a=42, b=42$
 Apres: a=42, b=42$"
     if [ "$IDENTICAL_OUTPUT" = "$EXPECTED_IDENTICAL" ]; then
-        echo -e "${GREEN}✅ Test valeurs identiques réussi${NC}"
+        echo -e "${GREEN}✅ Test valeurs identiques reussi${NC}"
     else
-        echo -e "${RED}❌ Test valeurs identiques échoué${NC}"
+        echo -e "${RED}❌ Test valeurs identiques echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_IDENTICAL"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -212,14 +212,14 @@ else
     TEST_RESULT=1
 fi
 
-# Test avec valeurs extrêmes
-echo -e "${YELLOW}🧪 Test avec valeurs extrêmes...${NC}"
+# Test avec valeurs extremes
+echo -e "${YELLOW}🧪 Test avec valeurs extremes...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_swap(int *a, int *b);
 
 int main(void)
@@ -240,9 +240,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_EXTREME="Avant: max=2147483647, min=-2147483648$
 Apres: max=-2147483648, min=2147483647$"
     if [ "$EXTREME_OUTPUT" = "$EXPECTED_EXTREME" ]; then
-        echo -e "${GREEN}✅ Test valeurs extrêmes réussi${NC}"
+        echo -e "${GREEN}✅ Test valeurs extremes reussi${NC}"
     else
-        echo -e "${RED}❌ Test valeurs extrêmes échoué${NC}"
+        echo -e "${RED}❌ Test valeurs extremes echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_EXTREME"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -250,12 +250,12 @@ Apres: max=-2147483648, min=2147483647$"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test valeurs extrêmes${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test valeurs extremes${NC}"
     TEST_RESULT=1
 fi
 
-# Test avec même pointeur (cas spécial, même si pas recommandé)
-echo -e "${YELLOW}🧪 Test avec échanges multiples...${NC}"
+# Test avec meme pointeur (cas special, meme si pas recommande)
+echo -e "${YELLOW}🧪 Test avec echanges multiples...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
@@ -263,7 +263,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <wchar.h>
 #include <locale.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_swap(int *a, int *b);
 
 int main(void)
@@ -273,13 +273,13 @@ int main(void)
     int a = 1, b = 2;
     wprintf(L"Initial: a=%d, b=%d\n", a, b);
     
-    // Premier échange
+    // Premier echange
     pw_swap(&a, &b);
-    wprintf(L"1er échange: a=%d, b=%d\n", a, b);
+    wprintf(L"1er echange: a=%d, b=%d\n", a, b);
     
-    // Deuxième échange (doit revenir à l'état initial)
+    // Deuxieme echange (doit revenir a l'etat initial)
     pw_swap(&a, &b);
-    wprintf(L"2ème échange: a=%d, b=%d\n", a, b);
+    wprintf(L"2eme echange: a=%d, b=%d\n", a, b);
     
     return (0);
 }
@@ -290,12 +290,12 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     MULTIPLE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     EXPECTED_MULTIPLE="Initial: a=1, b=2$
-1er échange: a=2, b=1$
-2ème échange: a=1, b=2$"
+1er echange: a=2, b=1$
+2eme echange: a=1, b=2$"
     if [ "$MULTIPLE_OUTPUT" = "$EXPECTED_MULTIPLE" ]; then
-        echo -e "${GREEN}✅ Test échanges multiples réussi${NC}"
+        echo -e "${GREEN}✅ Test echanges multiples reussi${NC}"
     else
-        echo -e "${RED}❌ Test échanges multiples échoué${NC}"
+        echo -e "${RED}❌ Test echanges multiples echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_MULTIPLE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -303,18 +303,18 @@ if [ $? -eq 0 ]; then
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test échanges multiples${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test echanges multiples${NC}"
     TEST_RESULT=1
 fi
 
-# Test de vérification que les variables sont bien modifiées
-echo -e "${YELLOW}🧪 Test de vérification des modifications...${NC}"
+# Test de verification que les variables sont bien modifiees
+echo -e "${YELLOW}🧪 Test de verification des modifications...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_swap(int *a, int *b);
 
 int main(void)
@@ -326,7 +326,7 @@ int main(void)
     
     pw_swap(&a, &b);
     
-    // Vérifier que a contient maintenant la valeur originale de b
+    // Verifier que a contient maintenant la valeur originale de b
     // et que b contient maintenant la valeur originale de a
     if (a == original_b && b == original_a) {
         printf("SUCCESS\n");
@@ -343,14 +343,14 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     VERIFICATION_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if [ "$VERIFICATION_OUTPUT" = "SUCCESS$" ]; then
-        echo -e "${GREEN}✅ Test de vérification réussi${NC}"
+        echo -e "${GREEN}✅ Test de verification reussi${NC}"
     else
-        echo -e "${RED}❌ Test de vérification échoué${NC}"
+        echo -e "${RED}❌ Test de verification echoue${NC}"
         echo -e "${RED}Sortie: '$VERIFICATION_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test de vérification${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test de verification${NC}"
     TEST_RESULT=1
 fi
 
@@ -358,10 +358,10 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 017 validé avec succès${NC}"
-    echo -e "${GREEN}La fonction échange correctement les valeurs via pointeurs!${NC}"
+    echo -e "\n${GREEN}✅ Exercice 017 valide avec succes${NC}"
+    echo -e "${GREEN}La fonction echange correctement les valeurs via pointeurs!${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 017 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 017 non valide${NC}"
     exit 1
 fi
 

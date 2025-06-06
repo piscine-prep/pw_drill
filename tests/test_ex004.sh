@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}=== Test de l'exercice 004 : Afficher les chiffres ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,11 +33,11 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_print_digits(void);
 
 int main(void)
@@ -62,37 +62,37 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
 echo "0123456789$"
 
 EXEC_STATUS=$?
 
-# Définir la sortie attendue
+# Definir la sortie attendue
 EXPECTED_OUTPUT="0123456789$"
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction affiche correctement '0123456789' avec retour à la ligne${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction affiche correctement '0123456789' avec retour a la ligne${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue: '$EXPECTED_OUTPUT'${NC}"
     echo -e "${RED}Sortie obtenue: '$OUTPUT_VISIBLE'${NC}"
     
-    # Comparer caractère par caractère pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
+    # Comparer caractere par caractere pour diagnostic
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
     echo -n "Attendu: "
     echo "0123456789" | cat -e
     echo -n "Obtenu:  "
@@ -101,18 +101,18 @@ else
     TEST_RESULT=1
 fi
 
-# Vérifier spécifiquement la présence du retour à la ligne
+# Verifier specifiquement la presence du retour a la ligne
 if echo "$OUTPUT_VISIBLE" | grep -q '\$'; then
-    echo -e "${GREEN}✅ Retour à la ligne correctement présent${NC}"
+    echo -e "${GREEN}✅ Retour a la ligne correctement present${NC}"
 else
-    echo -e "${RED}❌ Retour à la ligne manquant${NC}"
+    echo -e "${RED}❌ Retour a la ligne manquant${NC}"
     TEST_RESULT=1
 fi
 
-# Vérifier que tous les chiffres sont présents dans l'ordre
+# Verifier que tous les chiffres sont presents dans l'ordre
 DIGITS_ONLY=$(echo "$OUTPUT_VISIBLE" | sed 's/\$$//')
 if [ "$DIGITS_ONLY" = "0123456789" ]; then
-    echo -e "${GREEN}✅ Tous les chiffres sont présents dans l'ordre correct${NC}"
+    echo -e "${GREEN}✅ Tous les chiffres sont presents dans l'ordre correct${NC}"
 else
     echo -e "${RED}❌ Les chiffres ne sont pas dans l'ordre correct ou manquants${NC}"
     echo -e "${RED}Chiffres obtenus: '$DIGITS_ONLY'${NC}"
@@ -123,9 +123,9 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 004 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 004 valide avec succes${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 004 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 004 non valide${NC}"
     exit 1
 fi
 

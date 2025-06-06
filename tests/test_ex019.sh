@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}=== Test de l'exercice 019 : Division et modulo ultimes ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,31 +33,31 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_ultimate_div_mod(int *a, int *b);
 
 int main(void)
 {
-    // Test de la fonction pw_ultimate_div_mod avec différentes valeurs
+    // Test de la fonction pw_ultimate_div_mod avec differentes valeurs
     int a1 = 17, b1 = 5;
     printf("Avant: a=%d, b=%d\n", a1, b1);
     pw_ultimate_div_mod(&a1, &b1);
-    printf("Après: a=%d, b=%d\n", a1, b1);
+    printf("Apres: a=%d, b=%d\n", a1, b1);
     
     int a2 = 20, b2 = 6;
     printf("Avant: a=%d, b=%d\n", a2, b2);
     pw_ultimate_div_mod(&a2, &b2);
-    printf("Après: a=%d, b=%d\n", a2, b2);
+    printf("Apres: a=%d, b=%d\n", a2, b2);
     
     int a3 = 42, b3 = 7;
     printf("Avant: a=%d, b=%d\n", a3, b3);
     pw_ultimate_div_mod(&a3, &b3);
-    printf("Après: a=%d, b=%d\n", a3, b3);
+    printf("Apres: a=%d, b=%d\n", a3, b3);
     
     return (0);
 }
@@ -76,50 +76,50 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
 echo "Avant: a=17, b=5$"
-echo "Après: a=3, b=2$"
+echo "Apres: a=3, b=2$"
 echo "Avant: a=20, b=6$"
-echo "Après: a=3, b=2$"
+echo "Apres: a=3, b=2$"
 echo "Avant: a=42, b=7$"
-echo "Après: a=6, b=0$"
+echo "Apres: a=6, b=0$"
 
 EXEC_STATUS=$?
 
-# Définir la sortie attendue
+# Definir la sortie attendue
 EXPECTED_OUTPUT="Avant: a=17, b=5$
-Après: a=3, b=2$
+Apres: a=3, b=2$
 Avant: a=20, b=6$
-Après: a=3, b=2$
+Apres: a=3, b=2$
 Avant: a=42, b=7$
-Après: a=6, b=0$"
+Apres: a=6, b=0$"
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction effectue correctement la division et le modulo${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction effectue correctement la division et le modulo${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue:${NC}"
     echo "$EXPECTED_OUTPUT"
     echo -e "${RED}Sortie obtenue:${NC}"
     echo "$OUTPUT_VISIBLE"
     
     # Comparer ligne par ligne pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
-    echo "=== Tests effectués ==="
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
+    echo "=== Tests effectues ==="
     echo "pw_ultimate_div_mod(&a1, &b1) avec a1=17, b1=5 -> a1=17/5=3, b1=17%5=2"
     echo "pw_ultimate_div_mod(&a2, &b2) avec a2=20, b2=6 -> a2=20/6=3, b2=20%6=2"
     echo "pw_ultimate_div_mod(&a3, &b3) avec a3=42, b3=7 -> a3=42/7=6, b3=42%7=0"
@@ -128,15 +128,15 @@ else
     TEST_RESULT=1
 fi
 
-# Test individuel pour vérifier le comportement avec 17 et 5
+# Test individuel pour verifier le comportement avec 17 et 5
 echo -e "${YELLOW}🧪 Test individuel avec 17 / 5...${NC}"
 
-# Créer un fichier de test pour une seule division
+# Creer un fichier de test pour une seule division
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_ultimate_div_mod(int *a, int *b);
 
 int main(void)
@@ -144,7 +144,7 @@ int main(void)
     int dividend = 17, divisor = 5;
     printf("Avant: dividend=%d, divisor=%d\n", dividend, divisor);
     pw_ultimate_div_mod(&dividend, &divisor);
-    printf("Après: quotient=%d, reste=%d\n", dividend, divisor);
+    printf("Apres: quotient=%d, reste=%d\n", dividend, divisor);
     return (0);
 }
 EOF
@@ -155,11 +155,11 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     SINGLE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     EXPECTED_SINGLE="Avant: dividend=17, divisor=5$
-Après: quotient=3, reste=2$"
+Apres: quotient=3, reste=2$"
     if [ "$SINGLE_OUTPUT" = "$EXPECTED_SINGLE" ]; then
-        echo -e "${GREEN}✅ Test individuel réussi${NC}"
+        echo -e "${GREEN}✅ Test individuel reussi${NC}"
     else
-        echo -e "${RED}❌ Test individuel échoué${NC}"
+        echo -e "${RED}❌ Test individuel echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_SINGLE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -178,7 +178,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_ultimate_div_mod(int *a, int *b);
 
 int main(void)
@@ -186,7 +186,7 @@ int main(void)
     int a = 10, b = 2;
     printf("Avant: a=%d, b=%d\n", a, b);
     pw_ultimate_div_mod(&a, &b);
-    printf("Après: a=%d, b=%d\n", a, b);
+    printf("Apres: a=%d, b=%d\n", a, b);
     return (0);
 }
 EOF
@@ -196,11 +196,11 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     EXACT_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     EXPECTED_EXACT="Avant: a=10, b=2$
-Après: a=5, b=0$"
+Apres: a=5, b=0$"
     if [ "$EXACT_OUTPUT" = "$EXPECTED_EXACT" ]; then
-        echo -e "${GREEN}✅ Test division exacte réussi${NC}"
+        echo -e "${GREEN}✅ Test division exacte reussi${NC}"
     else
-        echo -e "${RED}❌ Test division exacte échoué${NC}"
+        echo -e "${RED}❌ Test division exacte echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_EXACT"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -219,7 +219,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_ultimate_div_mod(int *a, int *b);
 
 int main(void)
@@ -227,7 +227,7 @@ int main(void)
     int a = 100, b = 7;
     printf("Avant: a=%d, b=%d\n", a, b);
     pw_ultimate_div_mod(&a, &b);
-    printf("Après: a=%d, b=%d\n", a, b);
+    printf("Apres: a=%d, b=%d\n", a, b);
     return (0);
 }
 EOF
@@ -238,11 +238,11 @@ if [ $? -eq 0 ]; then
     LARGE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     # 100 / 7 = 14, 100 % 7 = 2
     EXPECTED_LARGE="Avant: a=100, b=7$
-Après: a=14, b=2$"
+Apres: a=14, b=2$"
     if [ "$LARGE_OUTPUT" = "$EXPECTED_LARGE" ]; then
-        echo -e "${GREEN}✅ Test grands nombres réussi${NC}"
+        echo -e "${GREEN}✅ Test grands nombres reussi${NC}"
     else
-        echo -e "${RED}❌ Test grands nombres échoué${NC}"
+        echo -e "${RED}❌ Test grands nombres echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_LARGE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -261,7 +261,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_ultimate_div_mod(int *a, int *b);
 
 int main(void)
@@ -269,7 +269,7 @@ int main(void)
     int a = 25, b = 1;
     printf("Avant: a=%d, b=%d\n", a, b);
     pw_ultimate_div_mod(&a, &b);
-    printf("Après: a=%d, b=%d\n", a, b);
+    printf("Apres: a=%d, b=%d\n", a, b);
     return (0);
 }
 EOF
@@ -280,11 +280,11 @@ if [ $? -eq 0 ]; then
     ONE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     # 25 / 1 = 25, 25 % 1 = 0
     EXPECTED_ONE="Avant: a=25, b=1$
-Après: a=25, b=0$"
+Apres: a=25, b=0$"
     if [ "$ONE_OUTPUT" = "$EXPECTED_ONE" ]; then
-        echo -e "${GREEN}✅ Test diviseur 1 réussi${NC}"
+        echo -e "${GREEN}✅ Test diviseur 1 reussi${NC}"
     else
-        echo -e "${RED}❌ Test diviseur 1 échoué${NC}"
+        echo -e "${RED}❌ Test diviseur 1 echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_ONE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -303,7 +303,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_ultimate_div_mod(int *a, int *b);
 
 int main(void)
@@ -311,7 +311,7 @@ int main(void)
     int a = 3, b = 5;
     printf("Avant: a=%d, b=%d\n", a, b);
     pw_ultimate_div_mod(&a, &b);
-    printf("Après: a=%d, b=%d\n", a, b);
+    printf("Apres: a=%d, b=%d\n", a, b);
     return (0);
 }
 EOF
@@ -322,11 +322,11 @@ if [ $? -eq 0 ]; then
     SMALL_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     # 3 / 5 = 0, 3 % 5 = 3
     EXPECTED_SMALL="Avant: a=3, b=5$
-Après: a=0, b=3$"
+Apres: a=0, b=3$"
     if [ "$SMALL_OUTPUT" = "$EXPECTED_SMALL" ]; then
-        echo -e "${GREEN}✅ Test dividende < diviseur réussi${NC}"
+        echo -e "${GREEN}✅ Test dividende < diviseur reussi${NC}"
     else
-        echo -e "${RED}❌ Test dividende < diviseur échoué${NC}"
+        echo -e "${RED}❌ Test dividende < diviseur echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_SMALL"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -338,14 +338,14 @@ else
     TEST_RESULT=1
 fi
 
-# Test de vérification mathématique
-echo -e "${YELLOW}🧪 Test de vérification mathématique...${NC}"
+# Test de verification mathematique
+echo -e "${YELLOW}🧪 Test de verification mathematique...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_ultimate_div_mod(int *a, int *b);
 
 int main(void)
@@ -357,7 +357,7 @@ int main(void)
     
     pw_ultimate_div_mod(&a, &b);
     
-    // Vérifier que dividend = quotient * divisor + reste
+    // Verifier que dividend = quotient * divisor + reste
     int verification = a * original_divisor + b;
     
     if (verification == original_dividend) {
@@ -376,14 +376,14 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     VERIFICATION_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if echo "$VERIFICATION_OUTPUT" | grep -q "VERIFICATION_SUCCESS"; then
-        echo -e "${GREEN}✅ Test de vérification mathématique réussi${NC}"
+        echo -e "${GREEN}✅ Test de verification mathematique reussi${NC}"
     else
-        echo -e "${RED}❌ Test de vérification mathématique échoué${NC}"
+        echo -e "${RED}❌ Test de verification mathematique echoue${NC}"
         echo -e "${RED}Sortie: '$VERIFICATION_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test de vérification${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test de verification${NC}"
     TEST_RESULT=1
 fi
 
@@ -391,10 +391,10 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 019 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 019 valide avec succes${NC}"
     echo -e "${GREEN}La fonction effectue correctement la division et le modulo via pointeurs!${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 019 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 019 non valide${NC}"
     exit 1
 fi
 

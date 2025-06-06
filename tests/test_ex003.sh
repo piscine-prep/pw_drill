@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script de test pour l'exercice 003 : Alphabet à l'envers
+# Script de test pour l'exercice 003 : Alphabet a l'envers
 # Usage: ./test_ex003.sh
 
 EXERCISE_DIR="ex003"
@@ -15,15 +15,15 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}=== Test de l'exercice 003 : Alphabet à l'envers ===${NC}"
+echo -e "${BLUE}=== Test de l'exercice 003 : Alphabet a l'envers ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,11 +33,11 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_reverse_alphabet(void);
 
 int main(void)
@@ -62,59 +62,59 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
 echo "zyxwvutsrqponmlkjihgfedcba$"
 
 EXEC_STATUS=$?
 
-# Définir la sortie attendue
+# Definir la sortie attendue
 EXPECTED_OUTPUT="zyxwvutsrqponmlkjihgfedcba$"
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction affiche correctement l'alphabet à l'envers${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction affiche correctement l'alphabet a l'envers${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue: '$EXPECTED_OUTPUT'${NC}"
     echo -e "${RED}Sortie obtenue: '$OUTPUT_VISIBLE'${NC}"
     
-    # Comparer caractère par caractère pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
-    echo "Attendu: zyxwvutsrqponmlkjihgfedcba (suivi d'un retour à la ligne)"
+    # Comparer caractere par caractere pour diagnostic
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
+    echo "Attendu: zyxwvutsrqponmlkjihgfedcba (suivi d'un retour a la ligne)"
     echo "Obtenu:  $OUTPUT_VISIBLE"
     
-    # Vérifier la longueur
-    EXPECTED_LENGTH=27  # 26 lettres + 1 caractère '$' pour le retour à la ligne
+    # Verifier la longueur
+    EXPECTED_LENGTH=27  # 26 lettres + 1 caractere '$' pour le retour a la ligne
     ACTUAL_LENGTH=${#OUTPUT_VISIBLE}
-    echo "Longueur attendue: $EXPECTED_LENGTH caractères"
-    echo "Longueur obtenue: $ACTUAL_LENGTH caractères"
+    echo "Longueur attendue: $EXPECTED_LENGTH caracteres"
+    echo "Longueur obtenue: $ACTUAL_LENGTH caracteres"
     
     TEST_RESULT=1
 fi
 
-# Vérifier spécifiquement la présence du retour à la ligne
+# Verifier specifiquement la presence du retour a la ligne
 if echo "$OUTPUT_VISIBLE" | grep -q '\$'; then
-    echo -e "${GREEN}✅ Retour à la ligne correctement présent${NC}"
+    echo -e "${GREEN}✅ Retour a la ligne correctement present${NC}"
 else
-    echo -e "${RED}❌ Retour à la ligne manquant${NC}"
+    echo -e "${RED}❌ Retour a la ligne manquant${NC}"
     TEST_RESULT=1
 fi
 
-# Vérifier que toutes les lettres de l'alphabet sont présentes dans l'ordre inverse
-echo -e "${YELLOW}🧪 Vérification de l'ordre des lettres...${NC}"
+# Verifier que toutes les lettres de l'alphabet sont presentes dans l'ordre inverse
+echo -e "${YELLOW}🧪 Verification de l'ordre des lettres...${NC}"
 ALPHABET_ONLY=$(echo "$OUTPUT_VISIBLE" | sed 's/\$//')
 EXPECTED_ALPHABET="zyxwvutsrqponmlkjihgfedcba"
 
@@ -127,21 +127,21 @@ else
     TEST_RESULT=1
 fi
 
-# Vérifier qu'il n'y a pas d'espaces ou de caractères indésirables
+# Verifier qu'il n'y a pas d'espaces ou de caracteres indesirables
 if echo "$ALPHABET_ONLY" | grep -q '[^a-z]'; then
-    echo -e "${RED}❌ Caractères indésirables détectés (espaces, chiffres, majuscules, etc.)${NC}"
+    echo -e "${RED}❌ Caracteres indesirables detectes (espaces, chiffres, majuscules, etc.)${NC}"
     TEST_RESULT=1
 else
-    echo -e "${GREEN}✅ Aucun caractère indésirable détecté${NC}"
+    echo -e "${GREEN}✅ Aucun caractere indesirable detecte${NC}"
 fi
 
 # Nettoyage
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 003 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 003 valide avec succes${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 003 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 003 non valide${NC}"
     exit 1
 fi
 

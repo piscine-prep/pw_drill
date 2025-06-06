@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}=== Test de l'exercice 016 : Modifier une valeur via pointeur ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,17 +33,17 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_set_value(int *ptr);
 
 int main(void)
 {
-    // Test de la fonction pw_set_value avec différentes valeurs
+    // Test de la fonction pw_set_value avec differentes valeurs
     int value1 = 10;
     printf("Avant: %d\n", value1);
     pw_set_value(&value1);
@@ -76,19 +76,19 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
 echo "Avant: 10$"
 echo "Apres: 42$"
 echo "Avant: -5$"
@@ -98,7 +98,7 @@ echo "Apres: 42$"
 
 EXEC_STATUS=$?
 
-# Définir la sortie attendue
+# Definir la sortie attendue
 EXPECTED_OUTPUT="Avant: 10$
 Apres: 42$
 Avant: -5$
@@ -106,20 +106,20 @@ Apres: 42$
 Avant: 0$
 Apres: 42$"
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction modifie correctement les valeurs via pointeur${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction modifie correctement les valeurs via pointeur${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue:${NC}"
     echo "$EXPECTED_OUTPUT"
     echo -e "${RED}Sortie obtenue:${NC}"
     echo "$OUTPUT_VISIBLE"
     
     # Comparer ligne par ligne pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
-    echo "=== Tests effectués ==="
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
+    echo "=== Tests effectues ==="
     echo "pw_set_value(&value1) avec value1=10 -> doit donner 42"
     echo "pw_set_value(&value2) avec value2=-5 -> doit donner 42"
     echo "pw_set_value(&value3) avec value3=0 -> doit donner 42"
@@ -128,15 +128,15 @@ else
     TEST_RESULT=1
 fi
 
-# Test individuel pour vérifier le comportement avec un seul pointeur
+# Test individuel pour verifier le comportement avec un seul pointeur
 echo -e "${YELLOW}🧪 Test individuel avec une valeur...${NC}"
 
-# Créer un fichier de test pour une seule valeur
+# Creer un fichier de test pour une seule valeur
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_set_value(int *ptr);
 
 int main(void)
@@ -157,9 +157,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_SINGLE="Avant: 100$
 Apres: 42$"
     if [ "$SINGLE_OUTPUT" = "$EXPECTED_SINGLE" ]; then
-        echo -e "${GREEN}✅ Test individuel réussi${NC}"
+        echo -e "${GREEN}✅ Test individuel reussi${NC}"
     else
-        echo -e "${RED}❌ Test individuel échoué${NC}"
+        echo -e "${RED}❌ Test individuel echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_SINGLE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -171,14 +171,14 @@ else
     TEST_RESULT=1
 fi
 
-# Test avec zéro
-echo -e "${YELLOW}🧪 Test avec valeur zéro...${NC}"
+# Test avec zero
+echo -e "${YELLOW}🧪 Test avec valeur zero...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_set_value(int *ptr);
 
 int main(void)
@@ -198,9 +198,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_ZERO="Avant: 0$
 Apres: 42$"
     if [ "$ZERO_OUTPUT" = "$EXPECTED_ZERO" ]; then
-        echo -e "${GREEN}✅ Test avec zéro réussi${NC}"
+        echo -e "${GREEN}✅ Test avec zero reussi${NC}"
     else
-        echo -e "${RED}❌ Test avec zéro échoué${NC}"
+        echo -e "${RED}❌ Test avec zero echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_ZERO"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -208,18 +208,18 @@ Apres: 42$"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test avec zéro${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test avec zero${NC}"
     TEST_RESULT=1
 fi
 
-# Test avec NULL (vérifier qu'il n'y a pas de segfault)
-echo -e "${YELLOW}🧪 Test avec valeur négative...${NC}"
+# Test avec NULL (verifier qu'il n'y a pas de segfault)
+echo -e "${YELLOW}🧪 Test avec valeur negative...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_set_value(int *ptr);
 
 int main(void)
@@ -239,26 +239,26 @@ if [ $? -eq 0 ]; then
     EXPECTED_NEGATIVE="-999$
 42$"
     if [ "$NEGATIVE_OUTPUT" = "$EXPECTED_NEGATIVE" ]; then
-        echo -e "${GREEN}✅ Test valeur négative réussi${NC}"
+        echo -e "${GREEN}✅ Test valeur negative reussi${NC}"
     else
-        echo -e "${RED}❌ Test valeur négative échoué${NC}"
+        echo -e "${RED}❌ Test valeur negative echoue${NC}"
         echo -e "${RED}Sortie attendue: '$EXPECTED_NEGATIVE'${NC}"
         echo -e "${RED}Sortie obtenue: '$NEGATIVE_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test valeur négative${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test valeur negative${NC}"
     TEST_RESULT=1
 fi
 
-# Test avec valeur négative
+# Test avec valeur negative
 echo -e "${YELLOW}🧪 Test avec plusieurs pointeurs...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_set_value(int *ptr);
 
 int main(void)
@@ -279,9 +279,9 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     MULTIPLE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if [ "$MULTIPLE_OUTPUT" = "42 42 42$" ]; then
-        echo -e "${GREEN}✅ Test plusieurs pointeurs réussi${NC}"
+        echo -e "${GREEN}✅ Test plusieurs pointeurs reussi${NC}"
     else
-        echo -e "${RED}❌ Test plusieurs pointeurs échoué - Sortie: '$MULTIPLE_OUTPUT' (attendu: '42 42 42$')${NC}"
+        echo -e "${RED}❌ Test plusieurs pointeurs echoue - Sortie: '$MULTIPLE_OUTPUT' (attendu: '42 42 42$')${NC}"
         TEST_RESULT=1
     fi
 else
@@ -293,10 +293,10 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 016 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 016 valide avec succes${NC}"
     echo -e "${GREEN}La fonction modifie correctement les valeurs via pointeur!${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 016 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 016 non valide${NC}"
     exit 1
 fi
 

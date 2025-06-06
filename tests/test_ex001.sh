@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}=== Test de l'exercice 001 : Hello Powercoders ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,11 +33,11 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_hello_powercoders(void);
 
 int main(void)
@@ -62,36 +62,36 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie
+# Executer le programme et capturer la sortie
 ./"$EXECUTABLE" > program_output.txt
 EXEC_STATUS=$?
 
-echo -e "${YELLOW}📋 Sortie du programme (avec cat -e pour voir les caractères cachés):${NC}"
+echo -e "${YELLOW}📋 Sortie du programme (avec cat -e pour voir les caracteres caches):${NC}"
 cat -e program_output.txt
 
-echo -e "${YELLOW}📋 Résultat attendu:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu:${NC}"
 echo "Hello, Powercoders!" | cat -e
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 EXPECTED="Hello, Powercoders!"
 OUTPUT=$(cat program_output.txt)
 
 if [ "$OUTPUT" = "$EXPECTED" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction affiche correctement 'Hello, Powercoders!' avec retour à la ligne${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction affiche correctement 'Hello, Powercoders!' avec retour a la ligne${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue: '$EXPECTED'${NC}"
     echo -e "${RED}Sortie obtenue: '$OUTPUT'${NC}"
     
-    # Comparer caractère par caractère pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
+    # Comparer caractere par caractere pour diagnostic
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
     echo -n "Attendu: "
     echo "Hello, Powercoders!" | cat -e
     echo -n "Obtenu:  "
@@ -100,11 +100,11 @@ else
     TEST_RESULT=1
 fi
 
-# Vérifier spécifiquement la présence du retour à la ligne
+# Verifier specifiquement la presence du retour a la ligne
 if cat -e program_output.txt | grep -q '\$'; then
-    echo -e "${GREEN}✅ Retour à la ligne correctement présent${NC}"
+    echo -e "${GREEN}✅ Retour a la ligne correctement present${NC}"
 else
-    echo -e "${RED}❌ Retour à la ligne manquant${NC}"
+    echo -e "${RED}❌ Retour a la ligne manquant${NC}"
     TEST_RESULT=1
 fi
 
@@ -112,9 +112,9 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt program_output.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 001 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 001 valide avec succes${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 001 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 001 non valide${NC}"
     exit 1
 fi
 
