@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}=== Test de l'exercice 031 : Puissance d'un nombre ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,17 +33,17 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
 {
-    // Test de la fonction pw_pow avec différents cas
+    // Test de la fonction pw_pow avec differents cas
     printf("%d^%d = %d\n", 2, 3, pw_pow(2, 3));         // 2^3 = 8
     printf("%d^%d = %d\n", 5, 0, pw_pow(5, 0));         // 5^0 = 1
     printf("%d^%d = %d\n", 0, 5, pw_pow(0, 5));         // 0^5 = 0
@@ -70,19 +70,19 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
 echo "2^3 = 8$"
 echo "5^0 = 1$"
 echo "0^5 = 0$"
@@ -94,7 +94,7 @@ echo "-3^2 = 9$"
 
 EXEC_STATUS=$?
 
-# Définir la sortie attendue
+# Definir la sortie attendue
 EXPECTED_OUTPUT="2^3 = 8$
 5^0 = 1$
 0^5 = 0$
@@ -104,42 +104,42 @@ EXPECTED_OUTPUT="2^3 = 8$
 2^-3 = 0$
 -3^2 = 9$"
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction calcule correctement les puissances${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction calcule correctement les puissances${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue:${NC}"
     echo "$EXPECTED_OUTPUT"
     echo -e "${RED}Sortie obtenue:${NC}"
     echo "$OUTPUT_VISIBLE"
     
     # Comparer ligne par ligne pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
-    echo "=== Tests effectués ==="
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
+    echo "=== Tests effectues ==="
     echo "pw_pow(2, 3) -> attendu: 8"
     echo "pw_pow(5, 0) -> attendu: 1"
     echo "pw_pow(0, 5) -> attendu: 0"
     echo "pw_pow(0, 0) -> attendu: 1"
     echo "pw_pow(3, 4) -> attendu: 81"
     echo "pw_pow(-2, 3) -> attendu: -8"
-    echo "pw_pow(2, -3) -> attendu: 0 (division entière)"
+    echo "pw_pow(2, -3) -> attendu: 0 (division entiere)"
     echo "pw_pow(-3, 2) -> attendu: 9"
     echo "======================="
     
     TEST_RESULT=1
 fi
 
-# Test individuel pour vérifier le comportement avec 2^3
+# Test individuel pour verifier le comportement avec 2^3
 echo -e "${YELLOW}🧪 Test individuel avec 2^3...${NC}"
 
-# Créer un fichier de test pour une seule puissance
+# Creer un fichier de test pour une seule puissance
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
@@ -155,9 +155,9 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     SINGLE_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if [ "$SINGLE_OUTPUT" = "8$" ]; then
-        echo -e "${GREEN}✅ Test individuel réussi${NC}"
+        echo -e "${GREEN}✅ Test individuel reussi${NC}"
     else
-        echo -e "${RED}❌ Test individuel échoué - Sortie: '$SINGLE_OUTPUT' (attendu: '8$')${NC}"
+        echo -e "${RED}❌ Test individuel echoue - Sortie: '$SINGLE_OUTPUT' (attendu: '8$')${NC}"
         TEST_RESULT=1
     fi
 else
@@ -172,7 +172,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
@@ -192,9 +192,9 @@ if [ $? -eq 0 ]; then
 -5^0 = 1$
 0^0 = 1$"
     if [ "$ZERO_EXP_OUTPUT" = "$EXPECTED_ZERO_EXP" ]; then
-        echo -e "${GREEN}✅ Test exposant 0 réussi${NC}"
+        echo -e "${GREEN}✅ Test exposant 0 reussi${NC}"
     else
-        echo -e "${RED}❌ Test exposant 0 échoué${NC}"
+        echo -e "${RED}❌ Test exposant 0 echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_ZERO_EXP"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -213,7 +213,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
@@ -233,9 +233,9 @@ if [ $? -eq 0 ]; then
 0^5 = 0$
 0^100 = 0$"
     if [ "$ZERO_BASE_OUTPUT" = "$EXPECTED_ZERO_BASE" ]; then
-        echo -e "${GREEN}✅ Test base 0 réussi${NC}"
+        echo -e "${GREEN}✅ Test base 0 reussi${NC}"
     else
-        echo -e "${RED}❌ Test base 0 échoué${NC}"
+        echo -e "${RED}❌ Test base 0 echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_ZERO_BASE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -247,14 +247,14 @@ else
     TEST_RESULT=1
 fi
 
-# Test avec exposants négatifs
-echo -e "${YELLOW}🧪 Test avec exposants négatifs...${NC}"
+# Test avec exposants negatifs
+echo -e "${YELLOW}🧪 Test avec exposants negatifs...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
@@ -274,9 +274,9 @@ if [ $? -eq 0 ]; then
 5^-2 = 0$
 10^-1 = 0$"
     if [ "$NEGATIVE_EXP_OUTPUT" = "$EXPECTED_NEGATIVE_EXP" ]; then
-        echo -e "${GREEN}✅ Test exposants négatifs réussi${NC}"
+        echo -e "${GREEN}✅ Test exposants negatifs reussi${NC}"
     else
-        echo -e "${RED}❌ Test exposants négatifs échoué${NC}"
+        echo -e "${RED}❌ Test exposants negatifs echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_NEGATIVE_EXP"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -284,26 +284,26 @@ if [ $? -eq 0 ]; then
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test exposants négatifs${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test exposants negatifs${NC}"
     TEST_RESULT=1
 fi
 
-# Test avec nombres négatifs et exposants pairs/impairs
-echo -e "${YELLOW}🧪 Test avec nombres négatifs...${NC}"
+# Test avec nombres negatifs et exposants pairs/impairs
+echo -e "${YELLOW}🧪 Test avec nombres negatifs...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
 {
     printf("%d^%d = %d\n", -2, 2, pw_pow(-2, 2));     // pair -> positif
-    printf("%d^%d = %d\n", -2, 3, pw_pow(-2, 3));     // impair -> négatif
+    printf("%d^%d = %d\n", -2, 3, pw_pow(-2, 3));     // impair -> negatif
     printf("%d^%d = %d\n", -3, 4, pw_pow(-3, 4));     // pair -> positif
-    printf("%d^%d = %d\n", -5, 1, pw_pow(-5, 1));     // impair -> négatif
+    printf("%d^%d = %d\n", -5, 1, pw_pow(-5, 1));     // impair -> negatif
     return (0);
 }
 EOF
@@ -317,9 +317,9 @@ if [ $? -eq 0 ]; then
 -3^4 = 81$
 -5^1 = -5$"
     if [ "$NEGATIVE_BASE_OUTPUT" = "$EXPECTED_NEGATIVE_BASE" ]; then
-        echo -e "${GREEN}✅ Test nombres négatifs réussi${NC}"
+        echo -e "${GREEN}✅ Test nombres negatifs reussi${NC}"
     else
-        echo -e "${RED}❌ Test nombres négatifs échoué${NC}"
+        echo -e "${RED}❌ Test nombres negatifs echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_NEGATIVE_BASE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -327,7 +327,7 @@ if [ $? -eq 0 ]; then
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test nombres négatifs${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test nombres negatifs${NC}"
     TEST_RESULT=1
 fi
 
@@ -338,7 +338,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
@@ -358,9 +358,9 @@ if [ $? -eq 0 ]; then
 -7^1 = -7$
 1^1 = 1$"
     if [ "$ONE_EXP_OUTPUT" = "$EXPECTED_ONE_EXP" ]; then
-        echo -e "${GREEN}✅ Test exposant 1 réussi${NC}"
+        echo -e "${GREEN}✅ Test exposant 1 reussi${NC}"
     else
-        echo -e "${RED}❌ Test exposant 1 échoué${NC}"
+        echo -e "${RED}❌ Test exposant 1 echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_ONE_EXP"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -379,7 +379,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
@@ -399,9 +399,9 @@ if [ $? -eq 0 ]; then
 1^100 = 1$
 1^0 = 1$"
     if [ "$ONE_BASE_OUTPUT" = "$EXPECTED_ONE_BASE" ]; then
-        echo -e "${GREEN}✅ Test base 1 réussi${NC}"
+        echo -e "${GREEN}✅ Test base 1 reussi${NC}"
     else
-        echo -e "${RED}❌ Test base 1 échoué${NC}"
+        echo -e "${RED}❌ Test base 1 echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_ONE_BASE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -420,7 +420,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 int pw_pow(int base, int exposant);
 
 int main(void)
@@ -440,9 +440,9 @@ if [ $? -eq 0 ]; then
 3^5 = 243$
 10^3 = 1000$"
     if [ "$LARGE_EXP_OUTPUT" = "$EXPECTED_LARGE_EXP" ]; then
-        echo -e "${GREEN}✅ Test grands exposants réussi${NC}"
+        echo -e "${GREEN}✅ Test grands exposants reussi${NC}"
     else
-        echo -e "${RED}❌ Test grands exposants échoué${NC}"
+        echo -e "${RED}❌ Test grands exposants echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_LARGE_EXP"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -458,10 +458,10 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 031 validé avec succès${NC}"
+    echo -e "\n${GREEN}✅ Exercice 031 valide avec succes${NC}"
     echo -e "${GREEN}La fonction calcule correctement les puissances!${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 031 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 031 non valide${NC}"
     exit 1
 fi
 

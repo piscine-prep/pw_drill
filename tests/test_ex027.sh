@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}=== Test de l'exercice 027 : Convertir en majuscules ===${NC}"
 
-# Vérifier si le dossier existe
+# Verifier si le dossier existe
 if [ ! -d "$EXERCISE_DIR" ]; then
     echo -e "${RED}❌ Erreur: Le dossier '$EXERCISE_DIR' n'existe pas${NC}"
     exit 1
 fi
 
-# Vérifier si le fichier source existe
+# Verifier si le fichier source existe
 if [ ! -f "$EXERCISE_DIR/$SOURCE_FILE" ]; then
     echo -e "${RED}❌ Erreur: Le fichier '$SOURCE_FILE' n'existe pas dans $EXERCISE_DIR${NC}"
     exit 1
@@ -33,18 +33,18 @@ echo -e "${YELLOW}📁 Structure du dossier:${NC}"
 ls -la "$EXERCISE_DIR"
 echo
 
-# Créer le fichier de test temporaire
+# Creer le fichier de test temporaire
 cat > "$EXERCISE_DIR/$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
 {
-    // Test de la fonction pw_to_uppercase avec différentes chaînes
+    // Test de la fonction pw_to_uppercase avec differentes chaines
     char str1[] = "hello world";
     printf("Avant: \"%s\"\n", str1);
     pw_to_uppercase(str1);
@@ -87,19 +87,19 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "${GREEN}✅ Compilation réussie${NC}"
+echo -e "${GREEN}✅ Compilation reussie${NC}"
 echo
 
-echo -e "${YELLOW}🧪 Exécution du test...${NC}"
+echo -e "${YELLOW}🧪 Execution du test...${NC}"
 echo
 
-# Exécuter le programme et capturer la sortie avec cat -e
+# Executer le programme et capturer la sortie avec cat -e
 echo "Sortie du programme avec cat -e:"
 OUTPUT_VISIBLE=$(./"$EXECUTABLE" | cat -e)
 echo "$OUTPUT_VISIBLE"
 
 echo
-echo -e "${YELLOW}📋 Résultat attendu avec cat -e:${NC}"
+echo -e "${YELLOW}📋 Resultat attendu avec cat -e:${NC}"
 echo "Avant: \"hello world\"$"
 echo "Apres: \"HELLO WORLD\"$"
 echo "Avant: \"Test123!@#\"$"
@@ -113,7 +113,7 @@ echo "Apres: \"\"$"
 
 EXEC_STATUS=$?
 
-# Définir la sortie attendue
+# Definir la sortie attendue
 EXPECTED_OUTPUT="Avant: \"hello world\"$
 Apres: \"HELLO WORLD\"$
 Avant: \"Test123!@#\"$
@@ -125,20 +125,20 @@ Apres: \"MIXEDCASE\"$
 Avant: \"\"$
 Apres: \"\"$"
 
-# Vérifier si la sortie est correcte
+# Verifier si la sortie est correcte
 if [ "$OUTPUT_VISIBLE" = "$EXPECTED_OUTPUT" ]; then
-    echo -e "${GREEN}✅ Test réussi! La fonction convertit correctement en majuscules${NC}"
+    echo -e "${GREEN}✅ Test reussi! La fonction convertit correctement en majuscules${NC}"
     TEST_RESULT=0
 else
-    echo -e "${RED}❌ Test échoué!${NC}"
+    echo -e "${RED}❌ Test echoue!${NC}"
     echo -e "${RED}Sortie attendue:${NC}"
     echo "$EXPECTED_OUTPUT"
     echo -e "${RED}Sortie obtenue:${NC}"
     echo "$OUTPUT_VISIBLE"
     
     # Comparer ligne par ligne pour diagnostic
-    echo -e "${YELLOW}📋 Comparaison détaillée:${NC}"
-    echo "=== Tests effectués ==="
+    echo -e "${YELLOW}📋 Comparaison detaillee:${NC}"
+    echo "=== Tests effectues ==="
     echo "pw_to_uppercase(\"hello world\") -> doit donner \"HELLO WORLD\""
     echo "pw_to_uppercase(\"Test123!@#\") -> doit donner \"TEST123!@#\""
     echo "pw_to_uppercase(\"ALREADY UPPERCASE\") -> doit donner \"ALREADY UPPERCASE\""
@@ -149,15 +149,15 @@ else
     TEST_RESULT=1
 fi
 
-# Test individuel pour vérifier le comportement avec "hello"
+# Test individuel pour verifier le comportement avec "hello"
 echo -e "${YELLOW}🧪 Test individuel avec 'hello'...${NC}"
 
-# Créer un fichier de test pour une seule chaîne
+# Creer un fichier de test pour une seule chaine
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
@@ -178,9 +178,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_SINGLE="Avant: hello$
 Apres: HELLO$"
     if [ "$SINGLE_OUTPUT" = "$EXPECTED_SINGLE" ]; then
-        echo -e "${GREEN}✅ Test individuel réussi${NC}"
+        echo -e "${GREEN}✅ Test individuel reussi${NC}"
     else
-        echo -e "${RED}❌ Test individuel échoué${NC}"
+        echo -e "${RED}❌ Test individuel echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_SINGLE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -192,14 +192,14 @@ else
     TEST_RESULT=1
 fi
 
-# Test avec chaîne contenant seulement des minuscules
-echo -e "${YELLOW}🧪 Test avec chaîne de minuscules...${NC}"
+# Test avec chaine contenant seulement des minuscules
+echo -e "${YELLOW}🧪 Test avec chaine de minuscules...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
@@ -219,9 +219,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_LOWER="Avant: abcdefghijklmnopqrstuvwxyz$
 Apres: ABCDEFGHIJKLMNOPQRSTUVWXYZ$"
     if [ "$LOWER_OUTPUT" = "$EXPECTED_LOWER" ]; then
-        echo -e "${GREEN}✅ Test chaîne de minuscules réussi${NC}"
+        echo -e "${GREEN}✅ Test chaine de minuscules reussi${NC}"
     else
-        echo -e "${RED}❌ Test chaîne de minuscules échoué${NC}"
+        echo -e "${RED}❌ Test chaine de minuscules echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_LOWER"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -229,18 +229,18 @@ Apres: ABCDEFGHIJKLMNOPQRSTUVWXYZ$"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test chaîne de minuscules${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test chaine de minuscules${NC}"
     TEST_RESULT=1
 fi
 
-# Test avec chaîne contenant seulement des majuscules
-echo -e "${YELLOW}🧪 Test avec chaîne de majuscules...${NC}"
+# Test avec chaine contenant seulement des majuscules
+echo -e "${YELLOW}🧪 Test avec chaine de majuscules...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
@@ -260,9 +260,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_UPPER="Avant: ABCDEFGHIJKLMNOPQRSTUVWXYZ$
 Apres: ABCDEFGHIJKLMNOPQRSTUVWXYZ$"
     if [ "$UPPER_OUTPUT" = "$EXPECTED_UPPER" ]; then
-        echo -e "${GREEN}✅ Test majuscules réussi${NC}"
+        echo -e "${GREEN}✅ Test majuscules reussi${NC}"
     else
-        echo -e "${RED}❌ Test majuscules échoué${NC}"
+        echo -e "${RED}❌ Test majuscules echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_UPPER"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -281,7 +281,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
@@ -297,9 +297,9 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     NULL_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if [ "$NULL_OUTPUT" = "Test NULL reussi$" ]; then
-        echo -e "${GREEN}✅ Test NULL réussi${NC}"
+        echo -e "${GREEN}✅ Test NULL reussi${NC}"
     else
-        echo -e "${RED}❌ Test NULL échoué - Sortie: '$NULL_OUTPUT'${NC}"
+        echo -e "${RED}❌ Test NULL echoue - Sortie: '$NULL_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
 else
@@ -307,15 +307,15 @@ else
     TEST_RESULT=1
 fi
 
-# Test avec chaîne vide
-echo -e "${YELLOW}🧪 Test avec chaîne vide...${NC}"
+# Test avec chaine vide
+echo -e "${YELLOW}🧪 Test avec chaine vide...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
@@ -337,9 +337,9 @@ if [ $? -eq 0 ]; then
 Longueur apres: 0$
 Contenu: ''$"
     if [ "$EMPTY_OUTPUT" = "$EXPECTED_EMPTY" ]; then
-        echo -e "${GREEN}✅ Test chaîne vide réussi${NC}"
+        echo -e "${GREEN}✅ Test chaine vide reussi${NC}"
     else
-        echo -e "${RED}❌ Test chaîne vide échoué${NC}"
+        echo -e "${RED}❌ Test chaine vide echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_EMPTY"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -347,18 +347,18 @@ Contenu: ''$"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test chaîne vide${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test chaine vide${NC}"
     TEST_RESULT=1
 fi
 
-# Test avec caractères spéciaux et chiffres (ne doivent pas changer)
-echo -e "${YELLOW}🧪 Test avec caractères non modifiés...${NC}"
+# Test avec caracteres speciaux et chiffres (ne doivent pas changer)
+echo -e "${YELLOW}🧪 Test avec caracteres non modifies...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
@@ -379,9 +379,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_UNCHANGED="Modifie: 123!@#$%^&*()_+-=[]{}|;':\",./<>?$
 Original: 123!@#$%^&*()_+-=[]{}|;':\",./<>?$"
     if [ "$UNCHANGED_OUTPUT" = "$EXPECTED_UNCHANGED" ]; then
-        echo -e "${GREEN}✅ Test caractères non modifiés réussi${NC}"
+        echo -e "${GREEN}✅ Test caracteres non modifies reussi${NC}"
     else
-        echo -e "${RED}❌ Test caractères non modifiés échoué${NC}"
+        echo -e "${RED}❌ Test caracteres non modifies echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_UNCHANGED"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -389,7 +389,7 @@ Original: 123!@#$%^&*()_+-=[]{}|;':\",./<>?$"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test caractères non modifiés${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test caracteres non modifies${NC}"
     TEST_RESULT=1
 fi
 
@@ -400,7 +400,7 @@ cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
@@ -420,9 +420,9 @@ if [ $? -eq 0 ]; then
     EXPECTED_WHITESPACE="Avant: hello\\tworld\\n test$
 Apres: HELLO\\tWORLD\\n TEST$"
     if [ "$WHITESPACE_OUTPUT" = "$EXPECTED_WHITESPACE" ]; then
-        echo -e "${GREEN}✅ Test espaces et tabulations réussi${NC}"
+        echo -e "${GREEN}✅ Test espaces et tabulations reussi${NC}"
     else
-        echo -e "${RED}❌ Test espaces et tabulations échoué${NC}"
+        echo -e "${RED}❌ Test espaces et tabulations echoue${NC}"
         echo -e "${RED}Sortie attendue:${NC}"
         echo "$EXPECTED_WHITESPACE"
         echo -e "${RED}Sortie obtenue:${NC}"
@@ -434,14 +434,14 @@ else
     TEST_RESULT=1
 fi
 
-# Test de vérification caractère par caractère
-echo -e "${YELLOW}🧪 Test de vérification caractère par caractère...${NC}"
+# Test de verification caractere par caractere
+echo -e "${YELLOW}🧪 Test de verification caractere par caractere...${NC}"
 
 cat > "$TEST_FILE" << 'EOF'
 #include <unistd.h>
 #include <stdio.h>
 
-// Prototype de la fonction de l'étudiant
+// Prototype de la fonction de l'etudiant
 void pw_to_uppercase(char *str);
 
 int main(void)
@@ -449,7 +449,7 @@ int main(void)
     char test[] = "aBc123XyZ";
     pw_to_uppercase(test);
     
-    // Vérifier chaque caractère individuellement
+    // Verifier chaque caractere individuellement
     if (test[0] == 'A' && test[1] == 'B' && test[2] == 'C' && 
         test[3] == '1' && test[4] == '2' && test[5] == '3' &&
         test[6] == 'X' && test[7] == 'Y' && test[8] == 'Z' && test[9] == '\0') {
@@ -466,14 +466,14 @@ gcc -Wall -Wextra -Werror -o "$EXECUTABLE" "$SOURCE_FILE" "$TEST_FILE" 2> compil
 if [ $? -eq 0 ]; then
     VERIFICATION_OUTPUT=$(./"$EXECUTABLE" | cat -e)
     if echo "$VERIFICATION_OUTPUT" | grep -q "VERIFICATION_SUCCESS"; then
-        echo -e "${GREEN}✅ Test de vérification caractère par caractère réussi${NC}"
+        echo -e "${GREEN}✅ Test de verification caractere par caractere reussi${NC}"
     else
-        echo -e "${RED}❌ Test de vérification caractère par caractère échoué${NC}"
+        echo -e "${RED}❌ Test de verification caractere par caractere echoue${NC}"
         echo -e "${RED}Sortie: '$VERIFICATION_OUTPUT'${NC}"
         TEST_RESULT=1
     fi
 else
-    echo -e "${RED}❌ Erreur de compilation du test de vérification${NC}"
+    echo -e "${RED}❌ Erreur de compilation du test de verification${NC}"
     TEST_RESULT=1
 fi
 
@@ -481,10 +481,10 @@ fi
 rm -f "$EXECUTABLE" "$TEST_FILE" compilation_errors.txt
 
 if [ $EXEC_STATUS -eq 0 ] && [ $TEST_RESULT -eq 0 ]; then
-    echo -e "\n${GREEN}✅ Exercice 027 validé avec succès${NC}"
-    echo -e "${GREEN}La fonction convertit correctement les caractères en majuscules!${NC}"
+    echo -e "\n${GREEN}✅ Exercice 027 valide avec succes${NC}"
+    echo -e "${GREEN}La fonction convertit correctement les caracteres en majuscules!${NC}"
 else
-    echo -e "\n${RED}❌ Exercice 027 non validé${NC}"
+    echo -e "\n${RED}❌ Exercice 027 non valide${NC}"
     exit 1
 fi
 
