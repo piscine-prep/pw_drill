@@ -373,7 +373,7 @@ int pw_is_lowercase(char *str);
 
 int main(void)
 {
-    printf("%d\n", pw_is_lowercase("cafe"));
+    printf("%d\n", pw_is_lowercase("café"));
     return (0);
 }
 EOF
