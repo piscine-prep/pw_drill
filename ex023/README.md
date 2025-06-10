@@ -17,7 +17,6 @@ Description:
 - La fonction doit copier la chaîne source (src) vers la chaîne destination (dest)
 - La copie doit inclure le caractère de fin de chaîne '\0'
 - La fonction doit retourner un pointeur vers la chaîne destination
-- Il faut s'assurer que la destination a suffisamment d'espace pour la source
 - La fonction ne doit pas utiliser strcpy ou d'autres fonctions de string.h
 - Si src est NULL, dest ne doit pas être modifié et la fonction retourne dest
 - Si dest est NULL, la fonction doit retourner NULL
